@@ -42,6 +42,21 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --header-height: 3.5rem;
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: local('Montserrat-Medium'), url('@/assets/fonts/Montserrat-Medium.ttf') format('opentype');
+}
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: local('Montserrat-Bold'), url('@/assets/fonts/Montserrat-Bold.ttf') format('opentype');
+}
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: local('Montserrat-ExtraBold'), url('@/assets/fonts/Montserrat-ExtraBold.ttf') format('opentype');
 }
 
 @media (prefers-color-scheme: dark) {
