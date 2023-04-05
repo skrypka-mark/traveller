@@ -1,0 +1,53 @@
+section[id='info'] {
+    position: relative;
+}
+
+.info-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: inherit;
+    z-index: 10;
+
+    border: 1px solid;
+}
+
+.blocks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.offer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* height: 100%; */
+
+    border: 1px solid;
+}
+.description-container > .description {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.description-container > .description > h3 {
+    font-family: 'Montserrat-ExtraBold';
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    color: white;
+}
+.description-container > .description > p {
+    font-family: 'Montserrat-Regular';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: white;
+}

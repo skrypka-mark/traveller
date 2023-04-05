@@ -1,11 +1,15 @@
 <script setup lang='ts'>
+import Container from '@/components/Container';
+
 const props = defineProps<{ id: string }>();
 const bgPath = `url(src/assets/images/${props.id}-bg.jpg)`;
 </script>
 
 <template>
     <section :id=id>
-        <slot />
+        <Container>
+            <slot />
+        </Container>
     </section>
 </template>
 
@@ -18,6 +22,8 @@ section {
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+
+    /* overflow: hidden; */
 }
 /* section:nth-child(2n) {
     background-color: black;

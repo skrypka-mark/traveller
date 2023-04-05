@@ -7,11 +7,20 @@ import { RouterLink } from 'vue-router';
         <header>
             <!-- <img alt='Logo' class='logo' src='@/assets/logo.svg' width=125 height=125 /> -->
             <nav>
+
                 <ul>
-                    <RouterLink :to='{ path: `/`, hash: `#info` }'>Info</RouterLink>
-                    <RouterLink :to='{ path: `/`, hash: `#gallery` }'>Gallery</RouterLink>
-                    <RouterLink :to='{ path: `/`, hash: `#contact` }'>Contact</RouterLink>
-                    <RouterLink :to='{ path: `/`, hash: `#about` }'>About us</RouterLink>
+                    <li>
+                        <RouterLink :to='{ path: `/`, hash: `#info` }'>Info</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink :to='{ path: `/`, hash: `#gallery` }'>Gallery</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink :to='{ path: `/`, hash: `#contact` }'>Contact</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink :to='{ path: `/`, hash: `#about` }'>About us</RouterLink>
+                    </li>
                 </ul>
             </nav>
         </header>

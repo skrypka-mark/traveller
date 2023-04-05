@@ -58,6 +58,10 @@
   font-family: 'Montserrat-ExtraBold';
   src: local('Montserrat-ExtraBold'), url('@/assets/fonts/Montserrat-ExtraBold.ttf') format('opentype');
 }
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: local('Montserrat-Regular'), url('@/assets/fonts/Montserrat-Regular.ttf') format('opentype');
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -94,4 +98,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  font-size: 16px;
 }

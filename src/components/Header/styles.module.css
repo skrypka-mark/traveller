@@ -1,8 +1,7 @@
 header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
+    bottom: auto;
 
     height: var(--header-height);
     background-color: rgba(158, 158, 158, 0.3);
@@ -10,6 +9,7 @@ header {
     mix-blend-mode: screen;
 
     border-bottom: 3px solid #686868;
+    z-index: 100;
 }
 
 nav {
@@ -23,7 +23,7 @@ nav > ul {
 
     height: 100%;
 }
-nav > ul > a {
+nav > ul a {
     color: var(--vt-c-white-mute);
     color: rgb(255, 255, 255);
     font-weight: 500;
