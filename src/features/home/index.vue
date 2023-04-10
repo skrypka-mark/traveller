@@ -27,14 +27,14 @@ import Button from '@/components/Button';
 .left-blur {
     position: absolute;
     inset: 0;
-    top: var(--header-height);
     right: auto;
     width: 50%;
 
     background-color: rgba(255, 255, 255, .1);
     backdrop-filter: blur(10px);
 
-    border-right: 3px solid #686868;
+    border-right: 1px solid #686868;
+    /* border-top-right-radius: 100%; */
 }
 
 .center-text {
@@ -42,7 +42,7 @@ import Button from '@/components/Button';
 
     position: absolute;
     inset: 0;
-    top: 20vh;
+    padding-top: 20vh;
 
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@ import Button from '@/components/Button';
 
     background-image: url('@/assets/images/home-bg.jpg');
     background-size: 100%;
-    background-position: center calc(-20vh - var(--header-height));
+    background-position: center;
     background-repeat: no-repeat;
 
     background-clip: text;
@@ -63,8 +63,8 @@ import Button from '@/components/Button';
 }
 .left-text {
     color: transparent;
-    text-stroke: 3px #686868;
-    -webkit-text-stroke: 3px #686868;
+    text-stroke: 1px #686868;
+    -webkit-text-stroke: 1px #686868;
 }
 .right-text {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -75,10 +75,17 @@ import Button from '@/components/Button';
     position: absolute;
     bottom: 50px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-
     width: 480px;
+}
+.description-container > p {
+    padding-top: 20px;
+    padding-bottom: 50px;
+
+    font-family: 'Montserrat-Regular';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    color: white;
 }
 </style>

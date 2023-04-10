@@ -5,37 +5,33 @@ section[id='info'] {
 .info-container {
     position: relative;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     height: inherit;
     z-index: 10;
-
-    border: 1px solid;
-}
-
-.blocks-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
 }
 
 .offer-container {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
+}
+.blocks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .description-container {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    /* height: 100%; */
-
-    border: 1px solid;
+    gap: 80px;
+    width: 470px;
 }
 .description-container > .description {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 .description-container > .description > h3 {
     font-family: 'Montserrat-ExtraBold';

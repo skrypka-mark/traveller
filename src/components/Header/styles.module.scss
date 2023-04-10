@@ -3,17 +3,27 @@ header {
     inset: 0;
     bottom: auto;
 
+    display: flex;
+    align-items: center;
+
+    @include main-container;
+
     height: var(--header-height);
     background-color: rgba(158, 158, 158, 0.3);
     backdrop-filter: blur(5px);
-    mix-blend-mode: screen;
+    // mix-blend-mode: screen;
 
-    border-bottom: 3px solid #686868;
+    border-bottom: 1px solid #686868;
     z-index: 100;
+
+    & h2 {
+        position: absolute;
+    }
 }
 
 nav {
     height: 100%;
+    margin: auto;
 }
 nav > ul {
     display: flex;

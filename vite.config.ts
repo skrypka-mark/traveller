@@ -12,5 +12,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
     extensions: ['*', '.js', '.vue', '.ts', '.json']
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/main.scss";`
+      }
+    }
   }
 })

@@ -16,6 +16,8 @@ import Blur from '@/components/Blur';
                 <div :class='$style[`blocks-container`]'>
                     <Block title='6,800' subTitle='REPEAT VISITORS' />
                     <Block title='3,065' subTitle='HOTELS TO STAY' />
+                </div>
+                <div :class='$style[`blocks-container`]'>
                     <Block title='2,560' subTitle='PLACES TO VISIT' />
                     <Block title='100%' subTitle='SAFE & SECURE' />
                 </div>
