@@ -6,7 +6,11 @@ import { RouterLink } from 'vue-router';
     <Teleport to='body'>
         <header>
             <!-- <img alt='Logo' class='logo' src='@/assets/logo.svg' width=125 height=125 /> -->
-            <h2>traveller</h2>
+            <RouterLink :to='{ path: `/` }' :class='$style[`logo-title`]'>
+                <h2>
+                    traveller
+                </h2>
+            </RouterLink>
             <nav>
                 <ul>
                     <li>

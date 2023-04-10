@@ -8,11 +8,15 @@ const router = createRouter({
     component: MainPage
   }],
   scrollBehavior: (to, from) => {
-    if (to.hash) {
+    if(to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth',
+        behavior: 'smooth'
       }
+    }
+    return {
+      top: 0,
+      behavior: 'smooth'
     }
   }
 });

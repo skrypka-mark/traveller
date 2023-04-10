@@ -16,8 +16,9 @@ header {
     border-bottom: 1px solid #686868;
     z-index: 100;
 
-    & h2 {
+    & .logo-title {
         position: absolute;
+        color: var(--color-text);
     }
 }
 
