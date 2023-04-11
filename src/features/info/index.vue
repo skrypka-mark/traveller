@@ -40,4 +40,4 @@ import Blur from '@/components/Blur';
     </Section>
 </template>
 
-<style module src='./styles.module.css' />
+<style lang='scss' module src='./styles.module.scss' />

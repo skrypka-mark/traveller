@@ -11,6 +11,7 @@ const bgPath = `url(src/assets/images/${props.id}-bg.jpg)`;
 
 <style lang='scss' module>
 section {
+    position: relative;
     width: 100vw;
     height: 100vh;
 
