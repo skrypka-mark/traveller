@@ -3,25 +3,26 @@ defineProps<{ title: string, subTitle: string }>();
 </script>
 
 <template>
-    <section class='info-block'>
-        <h1 class='title'>
+    <section :class='$style[`info-block`]'>
+        <h1 :class='$style.title'>
             {{ title }}
         </h1>
-        <h3 class='sub-title'>
+        <h3 :class='$style[`sub-title`]'>
             {{ subTitle }}
         </h3>
     </section>
 </template>
 
-<style scoped>
+<style lang='scss' module>
 .info-block {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
-    width: 240px;
-    height: 240px;
+    flex-basis: 240px;
+    aspect-ratio: 1 / 1;
+    /* height: 240px; */
 
     background: rgba(180, 180, 180, 0.53);
     backdrop-filter: blur(5px);

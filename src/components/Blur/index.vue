@@ -1,3 +1,7 @@
+<script setup lang='ts'>
+withDefaults(defineProps<{ blur: number }>(), { blur: 5 });
+</script>
+
 <template>
     <div :class='$style.blur' />
 </template>
@@ -7,6 +11,6 @@
     position: absolute;
     inset: 0;
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(v-bind('`${blur}px`'));
 }
 </style>

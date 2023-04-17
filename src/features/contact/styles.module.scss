@@ -1,0 +1,121 @@
+.bg-filler {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90.15deg, rgba(30, 30, 30, 0.9) 99.85%, rgba(0, 0, 0, 0) 99.86%);
+    backdrop-filter: blur(7.5px);
+}
+
+.contact-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100%;
+    padding-top: var(--header-height);
+
+    & > .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: flex-start;
+        flex-basis: 620px;
+
+        height: 100%;
+        padding-bottom: var(--header-height);
+
+        & article {
+            &:nth-child(1) {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+            &:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                & > header > .sub-title {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 150%;
+                    color: white;
+                }
+                & > main {
+                    & > .subscribe-form {
+                        display: flex;
+                        width: 100%;
+                        height: 70px;
+
+                        overflow: hidden;
+                        border-radius: 5px;
+
+                        & > input {
+                            flex-basis: 70%;
+                            padding: 20px;
+
+                            font-weight: 600;
+                            font-size: 20px;
+                            line-height: 150%;
+                            color: black;
+
+                            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                                color: black;
+                                opacity: 1; /* Firefox */
+                            }
+                            
+                            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                                color: black;
+                            }
+                            
+                            &::-ms-input-placeholder { /* Microsoft Edge */
+                                color: black;
+                            }
+                        }
+                        & > button {
+                            flex-basis: 30%;
+                            background-color: #33363D;
+
+                            font-weight: 600;
+                            font-size: 22px;
+                            line-height: 150%;
+                            color: white;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                        & > input,
+                        & > button {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & > .pictures-collage {
+        position: absolute;
+        right: 0;
+
+        & img {
+            display: block;
+            width: 300px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+
+            &.first-img{
+                position: absolute;
+                right: 190px;
+                bottom: 140px;
+                z-index: 3;
+            }
+            &.second-img {
+                position: relative;
+                margin-top: 70px;
+                z-index: 4;
+            }
+        }
+    }
+}

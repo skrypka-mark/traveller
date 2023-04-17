@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import Section from '@/components/Section.vue';
+import Section from '@/components/Section';
 import Title from '@/components/Title';
 import Block from '@/features/info/components/Block';
 import Blur from '@/components/Blur';

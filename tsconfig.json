@@ -5,7 +5,9 @@
     "baseUrl": ".",
     "module": "es2022",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*", "./src/components/*/index.vue"],
+      "@/utils/*": ["./src/utils/*"]
     }
   },
 

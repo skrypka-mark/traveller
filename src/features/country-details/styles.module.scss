@@ -1,0 +1,84 @@
+.country-details-container {
+    position: relative;
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+
+    padding-block: calc(var(--header-height) * 2);
+    height: 100%;
+
+    & > .details {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        gap: 30px;
+        flex-basis: 50%;
+
+        & > .title {
+            font-family: 'Montserrat-ExtraBold';
+            font-weight: 800;
+            font-size: 60px;
+            line-height: 73px;
+            color: white;
+        }
+        & > .description {
+            font-family: 'Montserrat-Medium';
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: white;
+        }
+        & > .gallery {
+            display: flex;
+            justify-content: space-between;
+            height: 175px;
+
+            & img {
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 5px;
+            }
+        }
+        & > .rate-buy {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+
+            & > .rating {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                & > .price {
+                    font-family: 'Montserrat-SemiBold';
+                    font-weight: 600;
+                    font-size: 25px;
+                    line-height: 30px;
+                    color: white;
+                }
+                & > .stars-container {
+                    display: flex;
+                    gap: 10px;
+
+                    & svg {
+                        cursor: pointer;
+                    }
+                }
+            }
+            & > .buy-btn {
+                height: auto;
+                align-self: flex-end;
+                padding: 15px 65px;
+            }
+        }
+        & > .close-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            
+            cursor: pointer;
+        }
+    }
+}

@@ -7,7 +7,10 @@ const router = createRouter({
     path: '/',
     component: MainPage
   }],
-  scrollBehavior: (to, from) => {
+  scrollBehavior: (to, from, savedPosition) => {
+    if(savedPosition) {
+      return savedPosition;
+    }
     if(to.hash) {
       return {
         el: to.hash,

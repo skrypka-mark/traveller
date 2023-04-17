@@ -1,10 +1,10 @@
 <template>
-    <button class='btn'>
+    <button :class='$style.btn'>
         <slot />
     </button>
 </template>
 
-<style scoped>
+<style lang='scss' module>
 .btn {
     max-width: 300px;
     height: 70px;
@@ -20,5 +20,9 @@
     font-size: 20px;
     font-weight: 700;
     color: white;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 </style>
