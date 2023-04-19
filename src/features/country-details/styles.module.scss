@@ -1,13 +1,13 @@
 .country-details-container {
-    position: relative;
+    position: absolute;
     display: flex;
-    // align-items: center;
     justify-content: space-between;
 
     padding-block: calc(var(--header-height) * 2);
+    @include main-container;
     height: 100%;
 
-    & > .details {
+    & .details {
         position: relative;
 
         display: flex;
@@ -62,8 +62,22 @@
                     display: flex;
                     gap: 10px;
 
-                    & svg {
+                    & button {
+                        width: 55px;
+                        height: 55px;
+
+                        background: none;
                         cursor: pointer;
+
+                        &:hover,
+                        &:has(~ button:hover) {
+                            & > svg > path {
+                                fill: yellow;
+                            }
+                        }
+                        & > svg > path {
+                            transition: .2s;
+                        }
                     }
                 }
             }

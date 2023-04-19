@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { SharedElementRouteGuard } from 'v-shared-element';
 import MainPage from '@/pages';
 
 const router = createRouter({
@@ -23,5 +24,7 @@ const router = createRouter({
     }
   }
 });
+
+router.beforeEach(SharedElementRouteGuard);
 
 export default router;

@@ -8,6 +8,7 @@ import Button from '@/components/Button';
 
 import CloseIcon from '@/components/icons/CloseIcon';
 import StarIcon from '@/components/icons/StarIcon';
+import StarFilledIcon from '@/components/icons/StarFilledIcon';
 
 import { getFullImagePath } from '@/utils/getFullImagePath';
 import { countryTours } from '@/constants';
@@ -25,7 +26,7 @@ const closeBtnClickHandler = () => {
 
 <template>
     <div :class='$style[`country-details-container`]'>
-        <CountryImage :image=selectedCountry!.image :footer=false />
+        <CountryImage :image=selectedCountry!.image :footer=false v-shared-element:[selectedCountry.image] />
 
         <section :class='$style.details'>
             <CloseIcon :class='$style[`close-icon`]' @click=closeBtnClickHandler />
@@ -44,11 +45,21 @@ const closeBtnClickHandler = () => {
                         {{ selectedCountry!.price }}{{ selectedCountry!.currencyTicker }} / 1 human / 1 day
                     </h4>
                     <div :class='$style[`stars-container`]'>
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
-                        <StarIcon />
+                        <button>
+                            <StarFilledIcon />
+                        </button>
+                        <button>
+                            <StarFilledIcon />
+                        </button>
+                        <button>
+                            <StarFilledIcon />
+                        </button>
+                        <button>
+                            <StarIcon />
+                        </button>
+                        <button>
+                            <StarIcon />
+                        </button>
                     </div>
                 </div>
                 <Button :class='$style[`buy-btn`]'>Buy</Button>

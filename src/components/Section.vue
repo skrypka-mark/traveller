@@ -46,5 +46,7 @@ const bgPath = `url(src/assets/images/bg/${props.id}.jpg)`;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    transition: .2s;
 }
 </style>
