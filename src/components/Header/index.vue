@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <Teleport to='body'>
+    <!-- <Teleport to='body'> -->
         <header :class='$style.header'>
             <RouterLink :to='{ path: `/` }' :class='$style[`logo-title`]'>
                 <h2>
@@ -27,7 +27,7 @@ import { RouterLink } from 'vue-router';
                 </ul>
             </nav>
         </header>
-    </Teleport>
+    <!-- </Teleport> -->
 </template>
 
 <style lang='scss' module src='./styles.module.scss' />

@@ -15,6 +15,7 @@
     background-color: #33363D;
     padding-inline: 45px;
     border-radius: 5px;
+    transition: background-color .2s ease-in-out;
 
     font-family: 'Montserrat-Bold';
     font-size: 20px;
@@ -23,6 +24,7 @@
 
     &:hover {
         cursor: pointer;
+        background-color: #26272C;
     }
 }
 </style>

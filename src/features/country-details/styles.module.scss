@@ -59,15 +59,14 @@
                     color: white;
                 }
                 & > .stars-container {
-                    display: flex;
-                    gap: 10px;
-
                     & button {
+                        display: inline-block;
                         width: 55px;
                         height: 55px;
 
                         background: none;
                         cursor: pointer;
+                        transition: scale .2s ease-in-out;
 
                         &:hover,
                         &:has(~ button:hover) {
@@ -75,8 +74,12 @@
                                 fill: yellow;
                             }
                         }
+                        &:hover,
+                        &:active {
+                            scale: 1.2;
+                        }
                         & > svg > path {
-                            transition: .2s;
+                            transition: .3s ease-out;
                         }
                     }
                 }

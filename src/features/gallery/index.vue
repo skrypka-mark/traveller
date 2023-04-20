@@ -9,8 +9,8 @@ import CountryImage from '@/components/CountryImage';
 
 import CountryDetails from '@/features/country-details';
 
-import ArrowLeft from '@/components/icons/ArrowLeft';
-import ArrowRight from '@/components/icons/ArrowRight';
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
+import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
 
 import { countryTours } from '@/constants';
 
@@ -34,13 +34,13 @@ const openCountryDetails = (id: string) => {
             <Title>Country tours</Title>
             <ul :class='$style[`gallery-list`]'>
                 <div :class='[$style[`arrow-container`], $style.left]'>
-                    <ArrowLeft :class='$style.arrow' />
+                    <ArrowLeftIcon :class='$style.arrow' />
                 </div>
                 <li :key=country v-for='{ id, country, image } in countryTours' :class='$style[`gallery-list__item`]' v-shared-element:[image]>
                     <CountryImage :image=image :title=country @click=openCountryDetails(id) />
                 </li>
                 <div :class='[$style[`arrow-container`], $style.right]'>
-                    <ArrowRight class='arrow' />
+                    <ArrowRightIcon class='arrow' />
                 </div>
             </ul>
         </div>

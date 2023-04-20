@@ -1,10 +1,12 @@
 <script setup lang='ts'>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 import Section from '@/components/Section';
 import CountryImage from '@/components/CountryImage';
 import Button from '@/components/Button';
+
+import PaymentModal from '@/features/country-details/modals/PaymentModal';
 
 import CloseIcon from '@/components/icons/CloseIcon';
 import StarIcon from '@/components/icons/StarIcon';
@@ -17,10 +19,17 @@ const props = defineProps<{ id: string }>();
 const router = useRouter();
 const route = useRoute();
 
+const isPaymentModalOpen = ref(false);
 const selectedCountry = computed(() => countryTours.find(({ id }) => id === props.id));
 
 const closeBtnClickHandler = () => {
     router.push({ ...route, query: { ...route.query, countryId: undefined } });
+};
+const openPaymentModalHandler = () => {
+    isPaymentModalOpen.value = true;
+};
+const closePaymentModalHandler = () => {
+    isPaymentModalOpen.value = false;
 };
 </script>
 
@@ -62,9 +71,14 @@ const closeBtnClickHandler = () => {
                         </button>
                     </div>
                 </div>
-                <Button :class='$style[`buy-btn`]'>Buy</Button>
+                <Button :class='$style[`buy-btn`]' @click=openPaymentModalHandler>
+                    Buy
+                </Button>
             </section>
         </section>
+
+        <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler />
+        <!-- <PaymentModal :open=true @close=closePaymentModalHandler /> -->
     </div>
 </template>
 
