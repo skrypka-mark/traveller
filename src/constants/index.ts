@@ -53,3 +53,79 @@ export const countryTours: ICountry[] = [
         stars: 2.5
     }
 ];
+
+
+
+
+interface ICreditCards {
+    list: {
+        brand: string;
+        image: string;
+        verification: string;
+        separation: string;
+        hidden: string;
+        accepted: boolean;
+        length: number;
+    }[];
+    active: number | null;
+}
+
+export const creditCards: ICreditCards = {
+    list: [
+        {
+            brand:        'American Express',
+            image:        '/images/creditcards/american-express.png',
+            verification: '^3[47][0-9]',
+            separation:   '^([0-9]{4})([0-9]{6})?(?:([0-9]{6})([0-9]{5}))?$',
+            hidden:       '**** ****** *[0-9][0-9][0-9][0-9]',
+            accepted:     true,
+            length:       15
+        },
+        {
+            brand:        'MasterCard',
+            image:        '/images/creditcards/mastercard.png',
+            verification: '^5[1-5][0-9]',
+            separation:   '^([0-9]{4})([0-9]{4})?([0-9]{4})?([0-9]{4})?$',
+            hidden:       '**** **** **** [0-9][0-9][0-9][0-9]',
+            accepted:     true,
+            length:       16
+        },
+        {
+            brand:        'Visa',
+            image:        '/images/creditcards/visa.png',
+            verification: '^4[0-9]',
+            separation:   '^([0-9]{4})([0-9]{4})?([0-9]{4})?([0-9]{4})?$',
+            hidden:       '**** **** **** [0-9][0-9][0-9][0-9]',
+            accepted:     true,
+            length:       16
+        },
+        {
+            brand:        'Discover',
+            image:        '/images/creditcards/discover.png',
+            verification: '^6(?:011|5[0-9]{2})[0-9]',
+            separation:   '^([0-9]{4})([0-9]{4})?([0-9]{4})?([0-9]{4})?$',
+            hidden:       '**** **** **** [0-9][0-9][0-9][0-9]',
+            accepted:     false,
+            length:       16
+        },
+        {
+            brand:        'Diners Club',
+            image:        '/images/creditcards/diners-club-international.png',
+            verification: '^3(?:0[0-5]|[68][0-9])[0-9]',
+            separation:   '^([0-9]{4})([0-9]{4})?([0-9]{4})?(?:([0-9]{4})([0-9]{4})([0-9]{2}))?$',
+            hidden:       '**** **** **[0-9][0-9] [0-9][0-9]',
+            accepted:     false,
+            length:       14
+        },
+        {
+            brand:        'JCB',
+            image:        '/images/creditcards/jcb.png',
+            verification: '^(?:2131|1800|35[0-9]{3})[0-9]',
+            separation:   '^([0-9]{4})([0-9]{4})?([0-9]{4})?([0-9]{4})?$',
+            hidden:       '**** **** **** [0-9][0-9][0-9][0-9]',
+            accepted:     false,
+            length:       16
+        }
+    ],
+    active: null 
+};

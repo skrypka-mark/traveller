@@ -1,22 +1,28 @@
 <script setup lang='ts'>
+import Loader from '@/components/Loader';
+
 defineProps<{
-    label: string;
+    label?: string;
     modelValue: string;
+    loading?: boolean;
 }>();
-defineEmits<{ (event: 'update'): void; }>();
+defineEmits<{ (event: 'update:modelValue'): void; }>();
 </script>
 
 <template>
     <div :class='$style[`input-container`]'>
-        <label :class='$style[`input-label`]'>
+        <label :class='$style[`input-label`]' v-if=label>
             {{ label }}
         </label>
-        <input
-            type='text'
-            :class='$style[`text-input`]'
-            :value=modelValue
-            @input='$emit(`update:modelValue`, $event.target.value)'
-        />
+        <div :class='$style[`text-input-container`]'>
+            <input
+                type='text'
+                :class='$style[`text-input`]'
+                :value=modelValue
+                @input='$emit(`update:modelValue`, $event.target.value)'
+            />
+            <Loader :class='$style.spinner' v-if=loading />
+        </div>
     </div>
 </template>
 
@@ -31,17 +37,34 @@ defineEmits<{ (event: 'update'): void; }>();
 
     color: #33363D;
 }
-.text-input {
-    width: 100%;
+.text-input-container {
+    --text-input-padding: 8px;
 
-    background-color: #EBEBEB;
-    border-radius: 5px;
-    padding: 10px;
+    position: relative;
 
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #33363D;
+    .text-input {
+        width: 100%;
+
+        background-color: #EBEBEB;
+        border-radius: 5px;
+        padding: var(--text-input-padding);
+
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #33363D;
+    }
+    .spinner {
+        position: absolute;
+        top: 50%;
+        right: var(--text-input-padding);
+        translate: 0 -50%;
+
+        width: 16px;
+        height: 16px;
+
+        opacity: .5;
+    }
 }
 
 .input-label,

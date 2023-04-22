@@ -1,12 +1,15 @@
 <script setup lang='ts'>
-defineProps<{ title: string; separator: boolean; }>();
+defineProps<{ title: string; separator?: boolean; }>();
 </script>
 
 <template>
     <section :class='$style[`payment-modal-section`]'>
-        <h1 :class='$style.title'>
-            {{ title }}
-        </h1>
+        <div :class='$style[`title-container`]'>
+            <h1 :class='$style.title'>
+                {{ title }}
+            </h1>
+            <slot name='right-title' />
+        </div>
         <div :class='$style.content'>
             <slot />
         </div>
@@ -15,6 +18,7 @@ defineProps<{ title: string; separator: boolean; }>();
 
 <style lang='scss' module>
 .payment-modal-section {
+    position: relative;
     display: flex;
     align-self: stretch;
     flex-direction: column;
@@ -25,12 +29,18 @@ defineProps<{ title: string; separator: boolean; }>();
     padding: 30px;
     border-right: v-bind('separator ? `1px` : `0`') solid rgba(0, 0, 0, .1);
 
-    & > .title {
-        font-weight: 600;
-        font-size: 22px;
-        line-height: 27px;
+    & > .title-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        color: #33363D;
+        & > .title {
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 27px;
+
+            color: #33363D;
+        }
     }
     & > .content {
         display: flex;

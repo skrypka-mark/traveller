@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-withDefaults(defineProps<{ blur: number }>(), { blur: 5 });
+withDefaults(defineProps<{ blur?: number }>(), { blur: 5 });
 </script>
 
 <template>

@@ -4,7 +4,7 @@ import { getFullImagePath } from '@/utils/getFullImagePath';
 interface IProps {
     image: string;
     title?: string;
-    footer: boolean;
+    footer?: boolean;
 };
 
 withDefaults(defineProps<IProps>(), { footer: true });

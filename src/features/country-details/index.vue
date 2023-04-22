@@ -77,8 +77,8 @@ const closePaymentModalHandler = () => {
             </section>
         </section>
 
-        <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler />
-        <!-- <PaymentModal :open=true @close=closePaymentModalHandler /> -->
+        <!-- <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler /> -->
+        <PaymentModal :open=true @close=closePaymentModalHandler />
     </div>
 </template>
 

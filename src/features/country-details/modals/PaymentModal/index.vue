@@ -1,14 +1,38 @@
 <script setup lang='ts'>
-import Modal from '@/components/Modal';
+import { usePaymentForm } from '@/features/country-details/composables/usePaymentForm';
 
+import Modal from '@/components/Modal';
 import Section from '@/features/country-details/modals/PaymentModal/components/Section';
 import TextInput from '@/features/country-details/modals/PaymentModal/components/TextInput';
 import Button from '@/features/country-details/modals/PaymentModal/components/Button';
 import CountWithLabel from '@/features/country-details/modals/PaymentModal/components/CountWithLabel';
 
+import OptionsIcon from '@/components/icons/OptionsIcon';
+
+import { creditCards } from '@/constants';
+
 defineProps<{ open: boolean; }>();
 
+const formData = usePaymentForm();
+
 const formSubmitHandler = () => {};
+const formatCardNumber = (cardNumber: string): string => {
+
+    creditCards.list.forEach((card, index) => {
+        if(cardNumber.match(new RegExp(card.verification))) creditCards.active = index;
+    });
+
+    const cardKey = creditCards.active !== null ? creditCards.active : 1;
+
+    if(!cardKey) return cardNumber;
+    
+    console.log(creditCards.list[cardKey]);
+    console.log(new RegExp(creditCards.list[cardKey].separation).exec(cardNumber));
+
+    console.log(formData.cardNumber);
+
+    return new RegExp(creditCards.list[cardKey].separation).exec(cardNumber) ? cardNumber + ' ' : cardNumber;
+};
 
 const onePersonPrice = 150;
 const oneDayPrice = 50;
@@ -19,8 +43,8 @@ const oneDayPrice = 50;
         <form :class='$style[`payment-modal-form`]' @submit.prevent=formSubmitHandler>
             <Section title='Payment Details' :separator=true>
                 <div :class='$style[`inputs-container`]'>
-                    <TextInput label='Name on card' modelValue='Lisiy Globus' />
-                    <TextInput label='Card number' modelValue='4141 4756 5869 9046' />
+                    <TextInput label='Name on card' v-model=formData.nameOnCard />
+                    <TextInput label='Card number' :modelValue=formatCardNumber(formData.cardNumber) @input='formData.cardNumber = $event.target.value.replace(` `, ``)' />
 
                     <div :class='$style[`expiration-date-cvv-container`]'>
                         <div :class='$style[`expiration-date-input`]'>
@@ -33,10 +57,15 @@ const oneDayPrice = 50;
                 <Button :class='$style[`payment-btn`]'>Payment</Button>
             </Section>
             <Section title='Order'>
+                <template #right-title>
+                    <button :class='$style[`options-btn`]'>
+                        <OptionsIcon />
+                    </button>
+                </template>
                 <div :class='$style[`inputs-container`]'>
                     <CountWithLabel label='Number of persons' value='2' :result='`$${onePersonPrice * 2}`' />
                     <CountWithLabel label='Number of rest days' value='7' :result='`$${oneDayPrice * 7}`' />
-                    <TextInput label='Discount code' modelValue='Mark68Travel' />
+                    <TextInput label='Discount code' modelValue='Mark68Travel' :loading=true />
                 </div>
                 <ul :class='$style[`invoice-container`]'>
                     <li :class='$style[`invoice-item`]'>
@@ -111,6 +140,11 @@ const oneDayPrice = 50;
                 color: #33363D;
             }
         }
+    }
+
+    .options-btn {
+        background: none;
+        cursor: pointer;
     }
 }
 
