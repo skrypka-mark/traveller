@@ -8,6 +8,11 @@ defineProps<{
     value: string | number;
     result: string;
 }>();
+defineEmits<{
+    (event: 'decrement'): void;
+    (event: 'increment'): void;
+    (event: 'reset'): void;
+}>();
 </script>
 
 <template>
@@ -17,17 +22,17 @@ defineProps<{
         </label>
         <div :class='$style.count'>
             <div :class='$style[`count-container`]'>
-                <CountButton symbol='-' />
+                <CountButton symbol='-' @click='$emit(`decrement`)' />
                 <span :class='$style[`count-value`]'>
                     {{ value }}
                 </span>
-                <CountButton symbol='+' />
+                <CountButton symbol='+' @click='$emit(`increment`)' />
             </div>
             <div :class='$style[`count-result`]'>
                 <span>
                     {{ result }}
                 </span>
-                <CrossCircleIcon :class='$style[`reset-result-icon`]' />
+                <CrossCircleIcon :class='$style[`reset-result-icon`]' @click='$emit(`reset`)' />
             </div>
         </div>
     </div>

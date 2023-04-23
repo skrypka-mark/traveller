@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-defineProps<{ title: string; separator?: boolean; }>();
+defineProps<{ title?: string; separator?: boolean; }>();
 </script>
 
 <template>
     <section :class='$style[`payment-modal-section`]'>
-        <div :class='$style[`title-container`]'>
+        <div :class='$style[`title-container`]' v-if=title>
             <h1 :class='$style.title'>
                 {{ title }}
             </h1>

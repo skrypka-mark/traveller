@@ -15,10 +15,12 @@
     "pinia": "^2.0.32",
     "v-shared-element": "^3.1.0",
     "vue": "^3.2.47",
+    "vue-restricted-input": "^1.0.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^18.15.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
