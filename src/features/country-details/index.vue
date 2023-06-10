@@ -34,7 +34,7 @@ const closePaymentModalHandler = () => {
 </script>
 
 <template>
-    <div :class='$style[`country-details-container`]'>
+    <div id='country-details' :class='$style[`country-details-container`]'>
         <CountryImage :image=selectedCountry!.image :footer=false v-shared-element:[selectedCountry.image] />
 
         <section :class='$style.details'>
@@ -77,8 +77,8 @@ const closePaymentModalHandler = () => {
             </section>
         </section>
 
-        <!-- <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler /> -->
-        <PaymentModal :open=true @close=closePaymentModalHandler />
+        <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler />
+        <!-- <PaymentModal :open=true @close=closePaymentModalHandler /> -->
     </div>
 </template>
 

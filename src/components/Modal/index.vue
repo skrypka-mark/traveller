@@ -1,9 +1,14 @@
 <script setup lang='ts'>
+import { watchEffect } from 'vue';
 import Backdrop from '@/components/Backdrop';
 import ModalCloseIcon from '@/components/icons/ModalCloseIcon';
 
-defineProps<{ open: boolean; }>();
+const props = defineProps<{ open: boolean; }>();
 const emit = defineEmits<{ (event: 'close'): void }>();
+
+watchEffect(() => {
+    document.body.classList[props.open ? 'add' : 'remove']('prevent-scroll');
+});
 </script>
 
 <template>

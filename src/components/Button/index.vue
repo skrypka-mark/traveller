@@ -1,6 +1,12 @@
+<script setup lang='ts'>
+import Typography from '@/components/Typography';
+</script>
+
 <template>
     <button :class='$style.btn'>
-        <slot />
+        <Typography variant='button'>
+            <slot />
+        </Typography>
     </button>
 </template>
 
@@ -17,9 +23,6 @@
     border-radius: 5px;
     transition: background-color .2s ease-in-out;
 
-    font-family: 'Montserrat-Bold';
-    font-size: 20px;
-    font-weight: 700;
     color: white;
 
     &:hover {

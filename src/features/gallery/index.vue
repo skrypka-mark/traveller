@@ -21,8 +21,9 @@ const router = useRouter();
 const transition = ref(false);
 const selectedCountryId = computed(() => route.query.countryId);
 
-const openCountryDetails = (id: string) => {
-    router.push({ hash: `#gallery`, query: { countryId: id } });
+const openCountryDetails = async (id: string) => {
+    if(await router.push({ hash: '#gallery' }))
+        router.push({ hash: '#gallery', query: { countryId: id } });
 };
 </script>
 

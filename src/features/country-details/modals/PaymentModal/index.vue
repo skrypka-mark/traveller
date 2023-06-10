@@ -87,7 +87,8 @@ const toggleOptionsPopup = () => {
                         <CountWithLabel
                             label='Number of persons'
                             :value=formData.numberOfPersons
-                            :result='`$${numberOfPersonsSum}`'
+                            :result='numberOfPersonsSum'
+                            currency-symbol='$'
                             @decrement=decrementNumberOfPersons
                             @increment=incrementNumberOfPersons
                             @reset=resetNumberOfPersons
@@ -95,7 +96,8 @@ const toggleOptionsPopup = () => {
                         <CountWithLabel
                             label='Number of rest days'
                             :value=formData.numberOfDays
-                            :result='`$${numberOfDaysSum}`'
+                            :result='numberOfDaysSum'
+                            currency-symbol='$'
                             @decrement=decrementNumberOfDays
                             @increment=incrementNumberOfDays
                             @reset=resetNumberOfDays
