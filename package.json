@@ -11,12 +11,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vueuse/core": "^10.1.2",
     "lodash.debounce": "^4.0.8",
+    "nanoid": "^4.0.2",
     "pinia": "^2.0.32",
     "v-shared-element": "^3.1.0",
     "vue": "^3.2.47",
     "vue-restricted-input": "^1.0.2",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue3-lazyload": "^0.3.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

@@ -4,15 +4,12 @@ import { useRouter, useRoute } from 'vue-router';
 
 import Section from '@/components/Section';
 import CountryImage from '@/components/CountryImage';
+import Typography from '@/components/Typography';
 import Button from '@/components/Button';
 
 import PaymentModal from '@/features/country-details/modals/PaymentModal';
 
 import CloseIcon from '@/components/icons/CloseIcon';
-import StarIcon from '@/components/icons/StarIcon';
-import StarFilledIcon from '@/components/icons/StarFilledIcon';
-
-import { getFullImagePath } from '@/utils/getFullImagePath';
 import { countryTours } from '@/constants';
 
 const props = defineProps<{ id: string }>();
@@ -21,6 +18,8 @@ const route = useRoute();
 
 const isPaymentModalOpen = ref(false);
 const selectedCountry = computed(() => countryTours.find(({ id }) => id === props.id));
+const selectedCountryImage = ref(selectedCountry.value!.image);
+const selectedCountryGallery = ref(selectedCountry.value!.gallery);
 
 const closeBtnClickHandler = () => {
     router.push({ ...route, query: { ...route.query, countryId: undefined } });
@@ -31,50 +30,46 @@ const openPaymentModalHandler = () => {
 const closePaymentModalHandler = () => {
     isPaymentModalOpen.value = false;
 };
+const galleryImageClickHandler = (index: number) => {
+    const temp = selectedCountryImage.value;
+
+    selectedCountryImage.value = selectedCountryGallery.value[index];
+    selectedCountryGallery.value[index] = temp;
+};
 </script>
 
 <template>
     <div id='country-details' :class='$style[`country-details-container`]'>
-        <CountryImage :image=selectedCountry!.image :footer=false v-shared-element:[selectedCountry.image] />
+        <CountryImage
+            :image=selectedCountryImage
+            :class='$style[`heading-image`]'
+            :footer=false
+            v-shared-element:[selectedCountry!.image]
+        />
 
         <section :class='$style.details'>
-            <CloseIcon :class='$style[`close-icon`]' @click=closeBtnClickHandler />
-            <h1 :class='$style.title'>Text</h1>
-            <p :class='$style.description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, sint? Similique, molestiae. Sit natus modi ipsum consectetur ut quod cupiditate maiores optio aliquam distinctio maxime sequi harum, tempora rem est?</p>
-            <div :class='$style.gallery'>
-                <img
-                    :key=image
-                    v-for='image in selectedCountry!.gallery'
-                    :src='getFullImagePath(image)'
-                />
-            </div>
-            <section :class='$style[`rate-buy`]'>
-                <div :class='$style.rating'>
-                    <h4 :class='$style.price'>
-                        {{ selectedCountry!.price }}{{ selectedCountry!.currencyTicker }} / 1 human / 1 day
-                    </h4>
-                    <div :class='$style[`stars-container`]'>
-                        <button>
-                            <StarFilledIcon />
-                        </button>
-                        <button>
-                            <StarFilledIcon />
-                        </button>
-                        <button>
-                            <StarFilledIcon />
-                        </button>
-                        <button>
-                            <StarIcon />
-                        </button>
-                        <button>
-                            <StarIcon />
-                        </button>
+            <div :class='$style[`info-block`]'>
+                <div :class='$style.heading'>
+                    <Typography variant='h3'>
+                        {{ selectedCountry?.country }}
+                    </Typography>
+                    <CloseIcon :class='$style[`close-icon`]' @click=closeBtnClickHandler />
+                </div>
+                <Typography variant='body' v-if='selectedCountry?.description.includes(`<br`)' v-html=selectedCountry?.description />
+                <Typography variant='body' v-else>
+                    {{ selectedCountry?.description }}
+                </Typography>
+                <div :class='$style.gallery'>
+                    <div v-for='(image, idx) in selectedCountryGallery' @click=galleryImageClickHandler(idx) :class='$style[`gallery-image-container`]'>
+                        <Transition name='fade-filter-image' mode='out-in'>
+                            <img :key=image v-lazy=image />
+                        </Transition>
                     </div>
                 </div>
-                <Button :class='$style[`buy-btn`]' @click=openPaymentModalHandler>
-                    Buy
-                </Button>
-            </section>
+            </div>
+            <Button :class='$style[`buy-btn`]' @click=openPaymentModalHandler>
+                Go to payment
+            </Button>
         </section>
 
         <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler />

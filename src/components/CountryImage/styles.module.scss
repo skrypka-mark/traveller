@@ -9,11 +9,17 @@ picture {
     border-radius: 10px;
     user-select: none;
 
-    & > img {
-        display: block;
+    & > .image-container {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        background-color: rgba(255, 255, 255, .3);
+
+        & > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
     & > .country-name {
         position: absolute;
@@ -24,12 +30,7 @@ picture {
         align-items: center;
         justify-content: center;
         height: 65px;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(6px);
-
-        font-family: 'Montserrat-ExtraBold';
-        font-size: 30px;
-        line-height: 37px;
-        color: white;
+        background: rgba(79, 79, 79, .35);
+        backdrop-filter: blur(2.5px);
     }
 }

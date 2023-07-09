@@ -6,13 +6,14 @@
 }
 
 .contact-container {
+    --vertical-spaces: 100px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     height: 100%;
-    padding-top: var(--header-height);
+    padding-block: var(--vertical-spaces);
 
     & > .content {
         display: flex;
@@ -22,7 +23,6 @@
         flex-basis: 620px;
 
         height: 100%;
-        padding-bottom: var(--header-height);
 
         & article {
             &:nth-child(1) {
@@ -35,12 +35,6 @@
                 flex-direction: column;
                 gap: 30px;
 
-                & > header > .sub-title {
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 150%;
-                    color: white;
-                }
                 & > main {
                     & > .subscribe-form {
                         display: flex;
@@ -96,6 +90,7 @@
     }
     & > .pictures-collage {
         position: absolute;
+        bottom: var(--vertical-spaces);
         right: 0;
 
         & img {

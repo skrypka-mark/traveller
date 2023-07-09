@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { getFullImagePath } from '@/utils/getFullImagePath';
+import Typography from '@/components/Typography';
 
 interface IProps {
     image: string;
@@ -12,10 +12,14 @@ withDefaults(defineProps<IProps>(), { footer: true });
 
 <template>
     <picture>
-        <img :src='getFullImagePath(`images/countries/${image}`)' :alt=title />
-        <h3 :class='$style[`country-name`]' v-if=footer>
+        <div :class='$style[`image-container`]'>
+            <Transition name='fade-filter-image' mode='out-in'>
+                <img :key=image :src=image :alt=title />
+            </Transition>
+        </div>
+        <Typography variant='caption' :class='$style[`country-name`]' v-if=footer>
             {{ title }}
-        </h3>
+        </Typography>
     </picture>
 </template>
 

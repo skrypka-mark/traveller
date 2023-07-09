@@ -6,7 +6,7 @@
 }
 
 .gallery-container {
-    --spaces: 60px;
+    --spaces: 20px;
 
     position: relative;
     display: flex;
@@ -14,15 +14,24 @@
     align-items: center;
     gap: var(--spaces);
 
+    height: 100%;
+
     padding-top: calc(var(--header-height) + var(--spaces) / 2);
 
     & .gallery-list {
         position: relative;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spaces);
+        // display: flex;
+        // align-items: center;
+        // gap: var(--spaces);
+        @include main-container;
+
+        width: 100%;
+        height: 100%;
+        // overflow-x: hidden;
+        // overflow-y: auto;
+
+        border: 1px solid black;
 
         & > .arrow-container {
             position: absolute;
@@ -58,39 +67,52 @@
                 border-bottom-left-radius: 10px;
             }
         }
-        &__item {
-            position: relative;
-            overflow: hidden;
+        & > .gallery-slider {
+            display: flex;
+            align-items: center;
+            gap: var(--spaces);
 
-            flex-basis: 335px;
-            aspect-ratio: 1 / 1;
-            // height: 350px;
+            width: 100%;
+            height: 100%;
+            transition: transform .2s ease-in-out;
 
-            cursor: pointer;
-            filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, .75));
-            border-radius: 10px;
+            border: 1px solid black;
 
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            .country-name {
-                position: absolute;
-                inset: 0;
-                top: auto;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 65px;
-                background: rgba(255, 255, 255, 0.35);
-                backdrop-filter: blur(2.5px);
-
-                font-family: 'Montserrat-ExtraBold';
-                font-size: 30px;
-                line-height: 37px;
-                color: white;
+            &__item {
+                position: relative;
+                overflow: hidden;
+    
+                // flex-basis: 335px;
+                flex: 0 0 calc(33% - var(--spaces));
+                aspect-ratio: 1 / 1;
+                // height: 350px;
+    
+                cursor: pointer;
+                filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, .75));
+                border-radius: 10px;
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .country-name {
+                    position: absolute;
+                    inset: 0;
+                    top: auto;
+    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 65px;
+                    background: rgba(255, 255, 255, 0.35);
+                    backdrop-filter: blur(2.5px);
+    
+                    font-family: 'Montserrat-ExtraBold';
+                    font-size: 30px;
+                    line-height: 37px;
+                    color: white;
+                }
             }
         }
     }

@@ -1,15 +1,16 @@
 <script setup lang='ts'>
+import Typography from '@/components/Typography';
 defineProps<{ title: string, subTitle: string }>();
 </script>
 
 <template>
     <section :class='$style[`info-block`]'>
-        <h1 :class='$style.title'>
+        <Typography variant='h3'>
             {{ title }}
-        </h1>
-        <h3 :class='$style[`sub-title`]'>
+        </Typography>
+        <Typography variant='caption' :class='$style[`sub-title`]'>
             {{ subTitle }}
-        </h3>
+        </Typography>
     </section>
 </template>
 
@@ -17,8 +18,9 @@ defineProps<{ title: string, subTitle: string }>();
 .info-block {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    row-gap: 30px;
 
     flex-basis: 240px;
     aspect-ratio: 1 / 1;
@@ -31,18 +33,8 @@ defineProps<{ title: string, subTitle: string }>();
     padding: 58px 25px;
 }
 
-.title {
-    color: black;
-    font-family: 'Montserrat-Medium';
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 49px;
-}
 .sub-title {
-    color: white;
-    font-family: 'Montserrat-ExtraBold';
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 24px;
+    color: var(--color-text-dark);
+    white-space: nowrap;
 }
 </style>

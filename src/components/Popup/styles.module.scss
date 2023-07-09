@@ -1,27 +1,28 @@
 .popup {
     --popup-height: 500px;
-    
+
     position: fixed;
     top: var(--popup-top-position);
-    left: calc(var(--popup-left-position) + var(--popup-width));
+    left: var(--popup-left-position);
     z-index: 500;
     overflow: hidden;
 
-    width: 0;
-    height: 0;
+    width: var(--popup-width);
+    height: calc(var(--popup-height) * .2);
     opacity: 0;
-    transition: all .2s ease-out;
+    transition: all .3s ease-in-out;
+    transform: scale(.3);
+    transform-origin: top right;
 
     background: rgba(255, 255, 255, .6);
     backdrop-filter: blur(15px);
-    border-radius: 5px;
+    border-radius: 10px;
 
     &.open {
-        left: var(--popup-left-position);
-        width: var(--popup-width);
         height: var(--popup-height);
-        opacity: 1;
         border-radius: 10px;
+        opacity: 1;
+        transform: scale(1);
     }
     & > .wrapper {
         width: var(--popup-width);

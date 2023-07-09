@@ -35,8 +35,8 @@ const optionsPopupPosition = computed(() => {
 });
 
 const formSubmitHandler = () => {};
-const toggleOptionsPopup = () => {
-    isOptionsPopupOpen.value = !isOptionsPopupOpen.value;
+const toggleOptionsPopup = (value?: boolean) => {
+    isOptionsPopupOpen.value = typeof value === 'boolean' ? value : !isOptionsPopupOpen.value;
 };
 </script>
 
@@ -78,10 +78,28 @@ const toggleOptionsPopup = () => {
             <div :class='$style[`order-section`]'>
                 <Section title='Order' style='width: 100%;'>
                     <template #right-title>
-                        <button ref=optionsBtnRef :class='$style[`options-btn`]' @click=toggleOptionsPopup>
+                        <button
+                            :class='$style[`options-btn`]'
+                            :style='{ pointerEvents: isOptionsPopupOpen ? "none" : "auto" }'
+                            ref=optionsBtnRef
+                            @click=toggleOptionsPopup()
+                        >
                             <OptionsIcon />
                         </button>
-                        <Popup :open=isOptionsPopupOpen :top=optionsPopupPosition.top :left=optionsPopupPosition.left />
+                        <Popup
+                            :open=isOptionsPopupOpen
+                            :top=optionsPopupPosition.top
+                            :left=optionsPopupPosition.left
+                            @close=toggleOptionsPopup(false)
+                        >
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                        </Popup>
                     </template>
                     <div :class='$style[`inputs-container`]'>
                         <CountWithLabel

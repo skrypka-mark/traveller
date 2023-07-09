@@ -1,101 +1,68 @@
 .country-details-container {
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    gap: 55px;
 
-    padding-block: calc(var(--header-height) * 2);
+    padding-block: calc(var(--header-height) + 25px);
     @include main-container;
+
+    width: 100%;
     height: 100%;
 
+    & > .heading-image {
+        flex-basis: 555px;
+    }
     & .details {
         position: relative;
 
         display: flex;
         flex-direction: column;
-        align-self: center;
-        gap: 30px;
+        justify-content: space-between;
         flex-basis: 50%;
 
-        & > .title {
-            font-family: 'Montserrat-ExtraBold';
-            font-weight: 800;
-            font-size: 60px;
-            line-height: 73px;
-            color: white;
-        }
-        & > .description {
-            font-family: 'Montserrat-Medium';
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 24px;
-            color: white;
-        }
-        & > .gallery {
+        & > .info-block {
             display: flex;
-            justify-content: space-between;
-            height: 175px;
+            flex-direction: column;
+            gap: 20px;
 
-            & img {
-                height: 100%;
-                aspect-ratio: 1 / 1;
-                border-radius: 5px;
-            }
-        }
-        & > .rate-buy {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-
-            & > .rating {
+            & > .heading {
                 display: flex;
-                flex-direction: column;
-                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
 
-                & > .price {
-                    font-family: 'Montserrat-SemiBold';
-                    font-weight: 600;
-                    font-size: 25px;
-                    line-height: 30px;
-                    color: white;
+                & > .close-icon {
+                    cursor: pointer;
                 }
-                & > .stars-container {
-                    & button {
-                        display: inline-block;
-                        width: 55px;
-                        height: 55px;
+            }
+            & > .gallery {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                height: 195px;
+    
+                .gallery-image-container {
+                    border-radius: 5px;
+                    cursor: pointer;
+                    overflow: hidden;
+                    background-color: rgba(255, 255, 255, .3);
 
-                        background: none;
-                        cursor: pointer;
-                        transition: scale .2s ease-in-out;
+                    & img {
+                        height: 100%;
+                        aspect-ratio: 1 / 1;
+                        object-fit: cover;
 
-                        &:hover,
-                        &:has(~ button:hover) {
-                            & > svg > path {
-                                fill: yellow;
-                            }
-                        }
-                        &:hover,
-                        &:active {
-                            scale: 1.2;
-                        }
-                        & > svg > path {
-                            transition: .3s ease-out;
+                        transition: filter .2s ease-in-out;
+
+                        &[lazy=loading] {
+                            filter: blur(6px);
                         }
                     }
                 }
             }
-            & > .buy-btn {
-                height: auto;
-                align-self: flex-end;
-                padding: 15px 65px;
-            }
         }
-        & > .close-icon {
-            position: absolute;
-            top: 0;
-            right: 0;
-            
-            cursor: pointer;
+        & > .buy-btn {
+            align-self: flex-end;
         }
     }
 }

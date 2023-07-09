@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import Section from '@/components/Section';
 import Blur from '@/components/Blur';
-import Title from '@/components/Title';
+import Typography from '@/components/Typography';
 import Button from '@/components/Button';
 
 import FacebookIcon from '@/components/icons/FacebookIcon';
@@ -15,7 +15,7 @@ import TelegramIcon from '@/components/icons/TelegramIcon';
         <Blur />
         <div :class='$style[`about-container`]'>
             <section :class='$style.form'>
-                <h1 :class='$style.title'>Let’s get in touch</h1>
+                <Typography variant='h3'>Let’s get in touch</Typography>
                 <form :class='$style[`reservation-form`]'>
                     <input type='text' placeholder='Name' />
                     <input type='text' placeholder='E-mail' />
@@ -26,19 +26,19 @@ import TelegramIcon from '@/components/icons/TelegramIcon';
             <section :class='$style.info'>
                 <section :class='$style.articles'>
                     <article>
-                        <Title>Visit our office:</Title>
-                        <p>Glasgow, 4578 Marmora Road</p>
+                        <Typography variant='h4'>Visit our office:</Typography>
+                        <Typography variant='body'>Glasgow, 4578 Marmora Road</Typography>
                     </article>
 
                     <article>
-                        <Title>Use contact form:</Title>
-                        <p>Fill in the fields in Contact Form and ask questions you are interested in.</p>
+                        <Typography variant='h4'>Use contact form:</Typography>
+                        <Typography variant='body'>Fill in the fields in Contact Form and ask questions you are interested in.</Typography>
                     </article>
 
                     <article>
-                        <Title>Contact us</Title>
-                        <p>+380 75 569 5869</p>
-                        <p>+380 75 569 5869</p>
+                        <Typography variant='h4'>Contact us</Typography>
+                        <Typography variant='body'>+380 75 569 5869</Typography>
+                        <Typography variant='body'>+380 75 569 5869</Typography>
                     </article>
                 </section>
                 <div :class='$style[`socials`]'>

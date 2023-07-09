@@ -1,12 +1,16 @@
 <script setup lang='ts'>
 import { ref, computed } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 const props = defineProps<{ open: boolean; top: number; left: number; }>();
+const emit = defineEmits<{ (event: 'close'): void }>();
 
 const popupWidth = 370;
 
 const popupRef = ref<HTMLDivElement | null>(null);
 const popupPosition = computed(() => ({ top: props.top, left: props.left - popupWidth }));
+
+onClickOutside(popupRef, () => emit('close'));
 </script>
 
 <template>

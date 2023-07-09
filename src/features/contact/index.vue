@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import Section from '@/components/Section';
-import Title from '@/components/Title';
+import Typography from '@/components/Typography';
 import Button from '@/components/Button';
 
 import { getFullImagePath } from '@/utils/getFullImagePath';
@@ -12,20 +12,20 @@ import { getFullImagePath } from '@/utils/getFullImagePath';
         <div :class='$style[`contact-container`]'>
             <section :class='$style.content'>
                 <article>
-                    <Title>Explore a diferent way to travel</Title>
-                    <p>
+                    <Typography variant='h3'>Explore a diferent way to travel</Typography>
+                    <Typography variant='body'>
                         Discover new cultures and have a wonderful rest with Backpack Story! Select the country you’d like to visit and provide our agents with estimated time – they’ll find and offer the most suitable tours and hotels.
                         <br />
                         <br />
                         During our work we organized countless journeys for our clients. We started as a small tour bureau, and soon we expanded our offers list. Today we have valuable experience travelling and we can advise the most stunning resorts, cities and countries to visit!
-                    </p>
+                    </Typography>
                 </article>
                 <article>
                     <header>
-                        <Title>The world is waiting for you</Title>
-                        <h3 :class='$style[`sub-title`]'>
+                        <Typography variant='h4'>The world is waiting for you</Typography>
+                        <Typography variant='body'>
                             Discover the world by travelling to different places.
-                        </h3>
+                        </Typography>
                     </header>
                     <main>
                         <form :class='$style[`subscribe-form`]'>

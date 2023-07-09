@@ -45,3 +45,46 @@ a {
 .relative {
   position: relative;
 }
+
+
+// Transitions
+
+.fade-filter-scale {
+  &-enter-active,
+  &-leave-active {
+      transition: all .2s ease-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+      opacity: 0;
+      scale: .6;
+      filter: blur(3px);
+  }
+}
+
+.fade-filter {
+  &-enter-active,
+  &-leave-active {
+      transition: all .2s ease-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+      opacity: 0;
+      filter: blur(3px);
+  }
+}
+
+.fade-filter-image {
+  &-enter-active,
+  &-leave-active {
+      transition: all .2s ease-in-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+      filter: blur(15px);
+      transform: scale(1.05);
+  }
+}

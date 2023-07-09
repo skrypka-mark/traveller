@@ -8,7 +8,7 @@ type Value = string | number;
 interface ICountWithLabelProps {
     label: string;
     value: Value;
-    result: string;
+    result: string | number;
     currencySymbol: string;
 }
 
@@ -136,51 +136,4 @@ const resultUnitTransitionName = computed(() => {
     }
 }
 </style>
-<style lang='scss' module>
-.labeled-count {
-
-    .count-label {
-        margin-bottom: 5px;
-
-        font-weight: 200;
-        font-size: 14px;
-        line-height: 17px;
-
-        color: #33363D;
-    }
-    .count {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .count-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            width: 110px;
-
-            .count-value {
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 19px;
-                color: #33363D;
-            }
-        }
-        .count-result {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 19px;
-            color: #33363D;
-
-            .reset-result-icon {
-                cursor: pointer;
-            }
-        }
-    }
-}
-</style>
+<style lang='scss' module src='./styles.module.scss' />
