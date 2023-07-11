@@ -24,14 +24,14 @@
         // display: flex;
         // align-items: center;
         // gap: var(--spaces);
-        @include main-container;
+        // @include main-container;
 
         width: 100%;
         height: 100%;
         // overflow-x: hidden;
         // overflow-y: auto;
 
-        border: 1px solid black;
+        // border: 1px solid black;
 
         & > .arrow-container {
             position: absolute;
@@ -81,9 +81,11 @@
             &__item {
                 position: relative;
                 overflow: hidden;
+
+                height: 100%;
     
                 // flex-basis: 335px;
-                flex: 0 0 calc(33% - var(--spaces));
+                // flex: 0 0 calc(33% - var(--spaces));
                 aspect-ratio: 1 / 1;
                 // height: 350px;
     

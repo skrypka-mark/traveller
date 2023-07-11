@@ -14,7 +14,42 @@ import Gallery from '@/features/gallery';
   <Gallery />
   <Contact />
   <About />
+  <div class='helper' />
 </template>
+
+<style lang='scss'>
+.helper {
+  pointer-events: none;
+  
+  // Horizontal
+  &::before {
+    content: '';
+
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    translate: 0 -50%;
+
+    height: 1px;
+    background-color: black;
+  }
+
+  // Vertical
+  &::after {
+    content: '';
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 0;
+
+    width: 1px;
+    background-color: black;
+  }
+}
+</style>
 
 <!-- {
   "question": "Сезон твоего отдыха",

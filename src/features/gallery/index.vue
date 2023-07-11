@@ -6,6 +6,7 @@ import Section from '@/components/Section';
 import Blur from '@/components/Blur';
 import Typography from '@/components/Typography';
 import CountryImage from '@/components/CountryImage';
+import GallerySlider from '@/components/GallerySlider';
 
 import CountryDetails from '@/features/country-details';
 
@@ -20,7 +21,6 @@ const router = useRouter();
 
 const transition = ref(false);
 const selectedCountryId = computed(() => route.query.countryId);
-const sliderIndex = ref(0);
 
 const openCountryDetails = async (id: string) => {
     if(await router.push({ hash: '#gallery' }))
@@ -35,22 +35,7 @@ const openCountryDetails = async (id: string) => {
         <div :class='$style[`gallery-container`]' v-if=!selectedCountryId>
             <Typography variant='h3'>Country tours</Typography>
             <div :class='$style[`gallery-list`]'>
-                <div :class='[$style[`arrow-container`], $style.left]' @click='sliderIndex++'>
-                    <ArrowLeftIcon :class='$style.arrow' />
-                </div>
-                <ul :class='$style[`gallery-slider`]' :style='{ transform: `translateX(${sliderIndex * 100}%)` }'>
-                    <li
-                        :key=country
-                        v-for='{ id, country, image } in countryTours'
-                        :class='$style[`gallery-slider__item`]'
-                        v-shared-element:[image]
-                    >
-                        <CountryImage :image=image :title=country @click=openCountryDetails(id) />
-                    </li>
-                </ul>
-                <div :class='[$style[`arrow-container`], $style.right]' @click='sliderIndex--'>
-                    <ArrowRightIcon :class='$style.arrow' />
-                </div>
+                <GallerySlider :data=countryTours @slide-click=openCountryDetails />
             </div>
         </div>
         <CountryDetails :id=selectedCountryId v-else />
