@@ -27,25 +27,43 @@ import TelegramIcon from '@/components/icons/TelegramIcon';
                 <section :class='$style.articles'>
                     <article>
                         <Typography variant='h4'>Visit our office:</Typography>
-                        <Typography variant='body'>Glasgow, 4578 Marmora Road</Typography>
+                        <section :class='$style[`article-content`]'>
+                            <Typography variant='body'>Glasgow, 4578 Marmora Road</Typography>
+                        </section>
                     </article>
 
                     <article>
                         <Typography variant='h4'>Use contact form:</Typography>
-                        <Typography variant='body'>Fill in the fields in Contact Form and ask questions you are interested in.</Typography>
+                        <section :class='$style[`article-content`]'>
+                            <Typography variant='body'>Fill in the fields in Contact Form and ask questions you are interested in.</Typography>
+                        </section>
                     </article>
 
                     <article>
                         <Typography variant='h4'>Contact us</Typography>
-                        <Typography variant='body'>+380 75 569 5869</Typography>
-                        <Typography variant='body'>+380 75 569 5869</Typography>
+                        <section :class='$style[`article-content`]'>
+                            <a href='+380 75 569 5869' target='_blank'>
+                                <Typography variant='body'>+380 75 569 5869</Typography>
+                            </a>
+                            <a href='+380 75 569 5869' target='_blank'>
+                                <Typography variant='body'>+380 75 569 5869</Typography>
+                            </a>
+                        </section>
                     </article>
                 </section>
                 <div :class='$style[`socials`]'>
-                    <FacebookIcon />
-                    <TwitterIcon />
-                    <InstagramIcon />
-                    <TelegramIcon />
+                    <a href='https://www.facebook.com/' target='_blank'>
+                        <FacebookIcon />
+                    </a>
+                    <a href='https://twitter.com/home' target='_blank'>
+                        <TwitterIcon />
+                    </a>
+                    <a href='https://www.instagram.com/' target='_blank'>
+                        <InstagramIcon />
+                    </a>
+                    <a href='https://web.telegram.org/k/' target='_blank'>
+                        <TelegramIcon />
+                    </a>
                 </div>
             </section>
         </div>

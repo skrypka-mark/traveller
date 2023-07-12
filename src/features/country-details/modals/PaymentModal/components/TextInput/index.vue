@@ -121,13 +121,14 @@ const getDefaultMaskValue = () => {
         outline: 1px solid transparent;
         transition: all .2s ease-in-out;
 
+        font-family: 'Montserrat-Regular';
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         color: #33363D;
 
         &::placeholder {
-            color: rgba(0, 0, 0, .3);
+            color: var(--color-input-placeholder);
         }
 
         &.success {

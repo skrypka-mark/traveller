@@ -32,13 +32,15 @@ const openCountryDetails = async (id: string) => {
     <Section id='gallery' :style='{ paddingInline: 0 }'>
         <Blur :blur=10 />
         <div :class='$style[`bg-darken`]' />
-        <div :class='$style[`gallery-container`]' v-if=!selectedCountryId>
-            <Typography variant='h3'>Country tours</Typography>
-            <div :class='$style[`gallery-list`]'>
-                <GallerySlider :data=countryTours @slide-click=openCountryDetails />
+        <Transition name='fade-filter' mode='out-in'>
+            <div :class='$style[`gallery-container`]' v-if=!selectedCountryId>
+                <Typography variant='h3'>Country tours</Typography>
+                <div :class='$style[`gallery-list`]'>
+                    <GallerySlider :data=countryTours @slide-click=openCountryDetails />
+                </div>
             </div>
-        </div>
-        <CountryDetails :id=selectedCountryId v-else />
+            <CountryDetails :id=selectedCountryId v-else />
+        </Transition>
     </Section>
 </template>
 

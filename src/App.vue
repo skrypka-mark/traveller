@@ -14,13 +14,14 @@ import Gallery from '@/features/gallery';
   <Gallery />
   <Contact />
   <About />
-  <div class='helper' />
+
+  <!-- <div class='helper' /> -->
 </template>
 
-<style lang='scss'>
+<!-- <style lang='scss'>
 .helper {
   pointer-events: none;
-  
+
   // Horizontal
   &::before {
     content: '';
@@ -49,7 +50,7 @@ import Gallery from '@/features/gallery';
     background-color: black;
   }
 }
-</style>
+</style> -->
 
 <!-- {
   "question": "Сезон твоего отдыха",

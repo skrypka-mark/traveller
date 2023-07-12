@@ -2,3 +2,12 @@
     padding-left: 100px;
     padding-right: 100px;
 }
+
+@mixin input-placeholder() {
+    font-family: 'Montserrat-Regular';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 160%;
+
+    color: var(--color-input-placeholder);
+}

@@ -40,11 +40,16 @@ const galleryImageClickHandler = (index: number) => {
 
 <template>
     <div id='country-details' :class='$style[`country-details-container`]'>
-        <CountryImage
+        <!-- <CountryImage
             :image=selectedCountryImage
             :class='$style[`heading-image`]'
             :footer=false
             v-shared-element:[selectedCountry!.image]
+        /> -->
+        <CountryImage
+            :image=selectedCountryImage
+            :class='$style[`heading-image`]'
+            :footer=false
         />
 
         <section :class='$style.details'>

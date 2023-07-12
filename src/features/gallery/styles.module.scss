@@ -15,23 +15,13 @@
     gap: var(--spaces);
 
     height: 100%;
-
-    padding-top: calc(var(--header-height) + var(--spaces) / 2);
+    padding-block: 100px;
 
     & .gallery-list {
         position: relative;
 
-        // display: flex;
-        // align-items: center;
-        // gap: var(--spaces);
-        // @include main-container;
-
         width: 100%;
         height: 100%;
-        // overflow-x: hidden;
-        // overflow-y: auto;
-
-        // border: 1px solid black;
 
         & > .arrow-container {
             position: absolute;
@@ -83,11 +73,7 @@
                 overflow: hidden;
 
                 height: 100%;
-    
-                // flex-basis: 335px;
-                // flex: 0 0 calc(33% - var(--spaces));
                 aspect-ratio: 1 / 1;
-                // height: 350px;
     
                 cursor: pointer;
                 filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, .75));
