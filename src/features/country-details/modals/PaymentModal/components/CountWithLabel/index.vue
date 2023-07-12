@@ -8,6 +8,8 @@ type Value = string | number;
 interface ICountWithLabelProps {
     label: string;
     value: Value;
+    groupClass: string;
+    btnClass: string;
     result: string | number;
     currencySymbol: string;
 }
@@ -51,12 +53,12 @@ const resultUnitTransitionName = computed(() => {
 
 <template>
     <div :class='$style[`labeled-count`]'>
-        <label :class='$style[`count-label`]'>
+        <label :class='$style[`count-label`]' v-if=label>
             {{ label }}
         </label>
         <div :class='$style.count'>
-            <div :class='$style[`count-container`]'>
-                <CountButton symbol='-' @click='$emit(`decrement`)' />
+            <div :class='[$style[`count-container`], groupClass]'>
+                <CountButton :class=btnClass symbol='-' @click='$emit(`decrement`)' />
                 <span :class='$style[`count-value`]'>
                     <span :key=idx v-for='(unit, idx) in splittedValue.current' style='perspective: 240px;'>
                         <Transition :name=valueUnitTransitionName mode='out-in'>
@@ -66,9 +68,9 @@ const resultUnitTransitionName = computed(() => {
                         </Transition>
                     </span>
                 </span>
-                <CountButton symbol='+' @click='$emit(`increment`)' />
+                <CountButton :class=btnClass symbol='+' @click='$emit(`increment`)' />
             </div>
-            <div :class='$style[`count-result`]'>
+            <div :class='$style[`count-result`]' v-if=result>
                 <span>
                     <span>
                         {{ currencySymbol }}
