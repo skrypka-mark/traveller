@@ -3,12 +3,14 @@ import { ref, computed } from 'vue';
 import { usePaymentForm } from '@/features/country-details/composables/usePaymentForm';
 
 import Modal from '@/components/Modal';
+import Popup from '@/components/Popup';
+import Typography from '@/components/Typography';
+
 import Section from '@/features/country-details/modals/PaymentModal/components/Section';
 import TextInput from '@/features/country-details/modals/PaymentModal/components/TextInput';
 import Button from '@/features/country-details/modals/PaymentModal/components/Button';
 import CountWithLabel from '@/features/country-details/modals/PaymentModal/components/CountWithLabel';
 
-import Popup from '@/components/Popup';
 import OptionsIcon from '@/components/icons/OptionsIcon';
 
 import { formatCurrencyNumber } from '@/utils/formatCurrencyNumber';
@@ -87,18 +89,289 @@ const toggleOptionsPopup = (value?: boolean) => {
                             <OptionsIcon />
                         </button>
                         <Popup
-                            :open=isOptionsPopupOpen
+                            :open=true
                             :top=optionsPopupPosition.top
                             :left=optionsPopupPosition.left
                             @close=toggleOptionsPopup(false)
                         >
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
-                            <span style='color: black;'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi aperiam impedit qui, eos laborum expedita tempora exercitationem, minima omnis a, doloremque delectus. Quae quos odit possimus animi, consequatur ipsum odio.</span>
+                        <!-- <Popup
+                            :open=isOptionsPopupOpen
+                            :top=optionsPopupPosition.top
+                            :left=optionsPopupPosition.left
+                            @close=toggleOptionsPopup(false)
+                        > -->
+
+                            <div :class='$style[`popup-content`]'>
+                                <Typography :class='$style[`popup-title`]' variant='h4' dark>Price list</Typography>
+                                <section :class='$style[`option-section`]' >
+                                    <Typography :class='$style[`section-option-title`]' variant='h5' dark>Airplane class</Typography>
+
+                                    <ul>
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Economy class</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>50$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>First class</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>100$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Business class</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>350$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+
+                                <section :class='$style[`option-section`]'>
+                                    <Typography variant='h5' dark>Hotels</Typography>
+
+                                    <CountWithLabel
+                                        value='2'
+                                        :group-class='$style[`popup-count-group`]'
+                                        :btn-class='$style[`popup-count-btn`]'
+                                        @decrement=decrementNumberOfPersons
+                                        @increment=incrementNumberOfPersons
+                                        @reset=resetNumberOfPersons
+                                    />
+                                </section>
+
+                                <section :class='$style[`option-section`]' >
+                                    <Typography :class='$style[`section-option-title`]' variant='h5' dark>Entertainment</Typography>
+
+                                    <ul>
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Excursion</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>20$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Diving</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>85$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Zoo</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>15$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Akianarium</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>30$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Museum</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>5$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Yacht</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>250$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Snowboard</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>62$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+
+                                <section :class='$style[`option-section`]' >
+                                    <Typography :class='$style[`section-option-title`]' variant='h5' dark>Additional options</Typography>
+
+                                    <ul>
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Translator</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>130$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Taxi</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>25$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Servant</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>200$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li :class='$style[`option-item`]'>
+                                            <Typography variant='body' dark>Guide</Typography>
+
+                                            <div :class='$style[`count-block`]'>
+                                                <Typography variant='body' dark>70$</Typography>
+                                            
+                                                <CountWithLabel
+                                                    value='2'
+                                                    :group-class='$style[`popup-count-group`]'
+                                                    :btn-class='$style[`popup-count-btn`]'
+                                                    @decrement=decrementNumberOfPersons
+                                                    @increment=incrementNumberOfPersons
+                                                    @reset=resetNumberOfPersons
+                                                />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
                         </Popup>
                     </template>
                     <div :class='$style[`inputs-container`]'>
@@ -235,5 +508,41 @@ const toggleOptionsPopup = (value?: boolean) => {
     flex-direction: column;
     gap: 20px;
     margin-bottom: 30px;
+}
+
+.popup-count-group {
+    width: 72px !important;
+}
+
+.popup-count-btn {
+    width: 25px;
+}
+
+.popup-content {
+    padding: 15px;
+}
+
+.popup-title {
+    text-align: center;
+}
+
+.option-section {
+    margin: 15px 0 15px 0;
+}
+
+.section-option-title {
+    margin: 15px 0 15px 0;
+}
+
+.option-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 13px;
+}
+
+.count-block {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
 }
 </style>
