@@ -103,6 +103,7 @@ const toggleOptionsPopup = (value?: boolean) => {
 
                             <div :class='$style[`popup-content`]'>
                                 <Typography :class='$style[`popup-title`]' variant='h4' dark>Price list</Typography>
+                                
                                 <section :class='$style[`option-section`]' >
                                     <Typography :class='$style[`section-option-title`]' variant='h5' dark>Airplane class</Typography>
 
@@ -527,11 +528,11 @@ const toggleOptionsPopup = (value?: boolean) => {
 }
 
 .option-section {
-    margin: 15px 0 15px 0;
+    margin: 15px 0;
 }
 
 .section-option-title {
-    margin: 15px 0 15px 0;
+    margin: 15px 0;
 }
 
 .option-item {

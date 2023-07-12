@@ -57,8 +57,8 @@ const resultUnitTransitionName = computed(() => {
             {{ label }}
         </label>
         <div :class='$style.count'>
-            <div :class='[ $style[`count-container`], groupClass ]'>
-                <CountButton :class='btnClass' symbol='-' @click='$emit(`decrement`)' />
+            <div :class='[$style[`count-container`], groupClass]'>
+                <CountButton :class=btnClass symbol='-' @click='$emit(`decrement`)' />
                 <span :class='$style[`count-value`]'>
                     <span :key=idx v-for='(unit, idx) in splittedValue.current' style='perspective: 240px;'>
                         <Transition :name=valueUnitTransitionName mode='out-in'>
@@ -68,7 +68,7 @@ const resultUnitTransitionName = computed(() => {
                         </Transition>
                     </span>
                 </span>
-                <CountButton :class='btnClass' symbol='+' @click='$emit(`increment`)' />
+                <CountButton :class=btnClass symbol='+' @click='$emit(`increment`)' />
             </div>
             <div :class='$style[`count-result`]' v-if=result>
                 <span>
