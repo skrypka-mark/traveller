@@ -1,5 +1,5 @@
 import { reactive, ref, computed } from 'vue';
-import { withMinimumValue } from '@/utils/withMinimumValue';
+import { withMinimumValue } from '@/utils';
 
 import { creditCards, type ICreditCard } from '@/constants';
 
@@ -53,8 +53,8 @@ export const usePaymentForm = () => {
     const isFetching = ref<boolean>(false);
     const isDiscountCodeValid = ref<boolean | null>(null);
 
-    const numberOfPersonsSum = computed(() => withMinimumValue(formData.numberOfPersons, 1) * onePersonPrice);
-    const numberOfDaysSum = computed(() => withMinimumValue(formData.numberOfDays, 1) * oneDayPrice);
+    const numberOfPersonsSum = computed(() => withMinimumValue(formData.numberOfPersons) * onePersonPrice);
+    const numberOfDaysSum = computed(() => withMinimumValue(formData.numberOfDays) * oneDayPrice);
     const total = computed(() => numberOfPersonsSum.value + numberOfDaysSum.value);
     const isFormValid = computed<boolean>(() => {
         return !!formData.email && !!formData.nameOnCard && !!formData.cardNumber && !!formData.expirationDate.month && !!formData.expirationDate.year &&
@@ -66,7 +66,7 @@ export const usePaymentForm = () => {
     };
     const decrementNumberOfPersons = () => {
         formData.numberOfPersons--;
-        formData.numberOfPersons = withMinimumValue(formData.numberOfPersons, 1);
+        formData.numberOfPersons = withMinimumValue(formData.numberOfPersons);
     };
     const resetNumberOfPersons = () => {
         formData.numberOfPersons = 1;
@@ -77,7 +77,7 @@ export const usePaymentForm = () => {
     };
     const decrementNumberOfDays = () => {
         formData.numberOfDays--;
-        formData.numberOfDays = withMinimumValue(formData.numberOfDays, 1);
+        formData.numberOfDays = withMinimumValue(formData.numberOfDays);
     };
     const resetNumberOfDays = () => {
         formData.numberOfDays = 1;

@@ -1,16 +1,40 @@
 <script setup lang='ts'>
-import { ref, computed } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+import { ref, computed, watchEffect, nextTick } from 'vue';
+import { onClickOutside, useScroll } from '@vueuse/core';
+import Typography from '@/components/Typography';
 
-const props = defineProps<{ open: boolean; top: number; left: number; }>();
-const emit = defineEmits<{ (event: 'close'): void }>();
+interface IPopupProps {
+    open: boolean;
+    title?: string;
+    top: number;
+    left: number;
+}
+
+const props = defineProps<IPopupProps>();
+const emits = defineEmits<{ (event: 'close'): void }>();
 
 const popupWidth = 370;
+const popupHeight = ref<string>('auto');
 
-const popupRef = ref<HTMLDivElement | null>(null);
+const popupContentRef = ref<HTMLDivElement | null>(null);
 const popupPosition = computed(() => ({ top: props.top, left: props.left - popupWidth }));
 
-onClickOutside(popupRef, () => emit('close'));
+onClickOutside(popupContentRef, () => emits('close'));
+
+const { y: popupScrollY } = useScroll(popupContentRef);
+
+watchEffect(async () => {
+    await nextTick();
+
+    if(!popupContentRef.value) return;
+
+    const { height } = getComputedStyle(popupContentRef.value);
+    popupHeight.value = height;
+});
+
+watchEffect(() => {
+    if(props.open) ( popupScrollY.value = 0 );
+});
 </script>
 
 <template>
@@ -20,12 +44,21 @@ onClickOutside(popupRef, () => emit('close'));
             :style='{
                 "--popup-top-position": `${popupPosition.top}px`,
                 "--popup-left-position": `${popupPosition.left}px`,
-                "--popup-width": `${popupWidth}px`
+                "--popup-width": `${popupWidth}px`,
+                "--popup-height": popupHeight,
+                translate: `0 ${-popupScrollY}px`
             }'
-            ref=popupRef
         >
             <div :class='$style.wrapper'>
-                <slot />
+                <Typography :class='$style.title' variant='h5' dark v-if=!!title>
+                    {{ title }}
+                </Typography>
+                <div :class='$style.content' ref=popupContentRef>
+                    <slot />
+                </div>
+                <div :class='$style.footer' v-if=$slots.footer>
+                    <slot name='footer' />
+                </div>
             </div>
         </div>
     </Teleport>
