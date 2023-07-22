@@ -60,8 +60,32 @@ a {
   }
 }
 
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+
 
 // Transitions
+
+.fade {
+  &-enter-active {
+    transition: all .1s ease-out;
+  }
+  &-leave-active {
+    transition: all .1s .1s ease-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: .5;
+  }
+}
 
 .fade-filter-scale {
   &-enter-active,
@@ -100,5 +124,19 @@ a {
   &-leave-to {
       filter: blur(15px);
       transform: scale(1.05);
+  }
+}
+
+.filter-number {
+  &-enter-active,
+  &-leave-active {
+    transition: all .1s ease-in-out;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: .6;
+    filter: blur(3px);
+    transform: scaleX(1.05);
   }
 }

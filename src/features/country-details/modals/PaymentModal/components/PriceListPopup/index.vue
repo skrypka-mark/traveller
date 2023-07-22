@@ -39,7 +39,8 @@ const priceList = {
         title: 'Hotels',
         options: [{
             counter: ref(2),
-            stars: true
+            stars: true,
+            starsAmount: ref(3)
         }]
     },
     entertainments: {
@@ -121,20 +122,20 @@ const totalAmount = computed(() => {
 </script>
 
 <template>
-    <!-- <Popup
+    <Popup
         :open=open
         title='Price list'
         :top=top
         :left=left
         @close='$emit(`close`)'
-    > -->
-    <Popup
+    >
+    <!-- <Popup
         :open=true
         title='Price list'
         :top=top
         :left=left
         @close='$emit(`close`)'
-    >
+    > -->
         <div :class='$style[`options-container`]'>
             <PriceListPopupItem :title=priceList.airplaneClasses.title :options=priceList.airplaneClasses.options />
             <PriceListPopupItem :title=priceList.hotels.title :options=priceList.hotels.options :stars=true />
@@ -145,7 +146,11 @@ const totalAmount = computed(() => {
             <div :class='$style[`popup-footer`]'>
                 <Typography variant='h5' dark>Total:</Typography>
                 <Typography variant='body' dark>
-                    {{ formatCurrencyNumber(totalAmount) }}
+                    <Transition name='filter-number' mode='out-in'>
+                        <div :key=totalAmount class='inline-block'>
+                            {{ formatCurrencyNumber(totalAmount) }}
+                        </div>
+                    </Transition>
                 </Typography>
             </div>
         </template>

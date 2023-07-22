@@ -6,12 +6,12 @@ import CrossCircleIcon from '@/components/icons/CrossCircleIcon';
 
 type Value = string | number;
 interface ICountWithLabelProps {
-    label: string;
+    label?: string;
     value: Value;
-    groupClass: string;
-    btnClass: string;
-    result: string | number;
-    currencySymbol: string;
+    groupClass?: string;
+    btnClass?: string;
+    result?: string | number;
+    currencySymbol?: string;
 }
 
 const props = defineProps<ICountWithLabelProps>();

@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { type Events } from 'vue';
 import Loader from '@/components/Loader';
 import { getFullImagePath } from '@/utils/getFullImagePath';
 
@@ -9,7 +10,7 @@ interface ITextInputProps {
     type?: 'string' | 'number' | '';
     label?: string;
     placeholder?: string;
-    modelValue: string;
+    modelValue: string | null;
     rightImage?: string;
     mask?: string;
     loading?: boolean;
@@ -19,7 +20,7 @@ interface ITextInputProps {
 }
 
 const props = withDefaults(defineProps<ITextInputProps>(), { mask: `{{${'*'.repeat(50)}}}` });
-defineEmits<{ (event: 'update:modelValue'): void; }>();
+const emits = defineEmits<{ (event: 'update:modelValue', value: string): void; }>();
 
 const getDefaultMaskValue = () => {
     const types: { string: string; number: number; default: string; } = {
@@ -29,6 +30,11 @@ const getDefaultMaskValue = () => {
     };
     
     return `{{${`${ props.type ? types[props.type] : types.default }`.repeat(50)}}}`;
+};
+
+const inputHanlder = (event: Event) => {
+    const { value = '' } = event.target as HTMLInputElement;
+    emits('update:modelValue', value);
 };
 </script>
 
@@ -41,9 +47,9 @@ const getDefaultMaskValue = () => {
             <input
                 type='text'
                 :class='[$style[`text-input`], { [$style.success]: success, [$style.error]: error }]'
-                :value=modelValue
+                :value='modelValue ?? ``'
                 :placeholder=placeholder
-                @input='$emit(`update:modelValue`, $event.target.value)'
+                @input=inputHanlder
                 v-mask='mask ? mask : getDefaultMaskValue()'
             />
             <Transition name='fade-filter' mode='out-in'>
@@ -97,7 +103,6 @@ const getDefaultMaskValue = () => {
 </style>
 
 <style lang='scss' module>
-.input-container {}
 .input-label {
     margin-bottom: 5px;
 

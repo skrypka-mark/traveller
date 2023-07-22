@@ -2,16 +2,15 @@
 import { type Ref } from 'vue';
 import Typography from '@/components/Typography';
 import CountWithLabel from '@/features/country-details/modals/PaymentModal/components/CountWithLabel';
+import FiveStars from '@/features/country-details/modals/PaymentModal/components/FiveStars';
 import { formatCurrencyNumber, withMinimumValue } from '@/utils';
 
-import RoundStarIcon from '@/features/country-details/modals/PaymentModal/components/icons/RoundStarIcon';
-import RoundStarBorderIcon from '@/features/country-details/modals/PaymentModal/components/icons/RoundStarBorderIcon';
-
 export interface IOptionItem {
-    label: string;
+    label?: string;
     value: number;
-    counter: Ref;
+    counter: Ref<number>;
     stars: boolean;
+    starsAmount: Ref<number>;
     decrement: () => void;
     increment: () => void;
 }
@@ -27,6 +26,10 @@ const decrement = (option: IOptionItem) => {
     option.counter.value--;
     option.counter.value = withMinimumValue(option.counter.value, 0);
 };
+
+const setStarsAmount = (option: IOptionItem) => (amount: number) => {
+    option.starsAmount.value = +amount;
+};
 </script>
 
 <template>
@@ -39,19 +42,13 @@ const decrement = (option: IOptionItem) => {
                 <Typography variant='body' dark v-if=!!option.label>
                     {{ option.label }}
                 </Typography>
-                <div :class='$style[`stars-container`]' v-if=option.stars>
-                    <RoundStarIcon />
-                    <RoundStarIcon />
-                    <RoundStarIcon />
-                    <RoundStarBorderIcon />
-                    <RoundStarBorderIcon />
-                </div>
+                <FiveStars :amount=option.starsAmount @click='(index: number) => setStarsAmount(option)(index)' v-if=option.stars />
                 <div :class='$style[`count-block`]'>
                     <Typography variant='body' dark v-if=!!option.value>
-                        <Transition name='filter-value' mode='out-in'>
-                            <span :key=option.counter.value>
+                        <Transition name='filter-number' mode='out-in'>
+                            <div :key=option.counter.value class='inline-block'>
                                 {{ option.counter.value ? formatCurrencyNumber(option.value * option.counter.value) : '-' }}
-                            </span>
+                            </div>
                         </Transition>
                     </Typography>
                     <CountWithLabel
@@ -67,18 +64,4 @@ const decrement = (option: IOptionItem) => {
     </section>
 </template>
 
-<style lang='scss'>
-.filter-value {
-  &-enter-active,
-  &-leave-active {
-      transition: all .2s ease-out;
-  }
-
-  &-enter-from,
-  &-leave-to {
-      opacity: .7;
-      filter: blur(5px);
-  }
-}
-</style>
 <style lang='scss' module src='./styles.module.scss' />

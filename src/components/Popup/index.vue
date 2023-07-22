@@ -46,7 +46,7 @@ watchEffect(() => {
                 "--popup-left-position": `${popupPosition.left}px`,
                 "--popup-width": `${popupWidth}px`,
                 "--popup-height": popupHeight,
-                translate: `0 ${-popupScrollY}px`
+                translate: `0 ${open ? -popupScrollY : 0}px`
             }'
         >
             <div :class='$style.wrapper'>
