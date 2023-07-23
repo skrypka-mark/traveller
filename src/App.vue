@@ -5,6 +5,8 @@ import Info from '@/features/info';
 import About from '@/features/about';
 import Contact from '@/features/contact';
 import Gallery from '@/features/gallery';
+
+import ToastContainer from '@/components/ToastContainer';
 </script>
 
 <template>
@@ -14,6 +16,8 @@ import Gallery from '@/features/gallery';
   <Gallery />
   <Contact />
   <About />
+
+  <ToastContainer />
 
   <!-- <div class='helper' /> -->
 </template>

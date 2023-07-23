@@ -4,7 +4,7 @@ import CountButton from '@/features/country-details/modals/PaymentModal/componen
 
 import CrossCircleIcon from '@/components/icons/CrossCircleIcon';
 
-type Value = string | number;
+type Value = string | number | undefined;
 interface ICountWithLabelProps {
     label?: string;
     value: Value;

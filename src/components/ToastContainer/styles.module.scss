@@ -1,0 +1,30 @@
+.toast-container {
+    --spaces: 5px;
+    --toast-width: 230px;
+
+    position: fixed;
+    inset: var(--top-spacing) auto 0 0;
+
+    width: calc(var(--toast-width) + calc(var(--spaces) * 2));
+    height: 100vh;
+
+    transition: all .2s ease;
+    overflow: auto;
+    pointer-events: none;
+    z-index: 999;
+
+    & > .toast-list {
+        width: inherit;
+        height: inherit;
+
+        padding-block: var(--spaces);
+        
+        & > * {
+            pointer-events: visible;
+            &:not(:last-child) {
+                // Flexbox doesn't work inside TransitionGroup properly
+                margin-bottom: var(--spaces);
+            }
+        }
+    }
+}

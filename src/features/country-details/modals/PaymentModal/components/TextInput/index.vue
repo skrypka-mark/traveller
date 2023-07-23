@@ -1,26 +1,28 @@
 <script setup lang='ts'>
-import { type Events } from 'vue';
+import { ref, type Ref } from 'vue';
 import Loader from '@/components/Loader';
 import { getFullImagePath } from '@/utils/getFullImagePath';
 
-import CheckMarkIcon from '@/features/country-details/modals/PaymentModal/components/icons/CheckMarkIcon';
-import CrossIcon from '@/features/country-details/modals/PaymentModal/components/icons/CrossIcon';
+import CheckMarkIcon from '@/components/icons/CheckMarkIcon';
+import CrossIcon from '@/components/icons/CrossIcon';
 
 interface ITextInputProps {
     type?: 'string' | 'number' | '';
     label?: string;
     placeholder?: string;
-    modelValue: string | null;
+    modelValue: string | number | null;
     rightImage?: string;
     mask?: string;
     loading?: boolean;
-    success?: boolean;
+    success?: boolean | null;
     error?: boolean;
-    helperText?: string;
+    helperText?: string | string[];
 }
 
 const props = withDefaults(defineProps<ITextInputProps>(), { mask: `{{${'*'.repeat(50)}}}` });
 const emits = defineEmits<{ (event: 'update:modelValue', value: string): void; }>();
+
+const textInputRef = ref<Ref | null>(null);
 
 const getDefaultMaskValue = () => {
     const types: { string: string; number: number; default: string; } = {
@@ -36,6 +38,11 @@ const inputHanlder = (event: Event) => {
     const { value = '' } = event.target as HTMLInputElement;
     emits('update:modelValue', value);
 };
+
+const resetInputHanlder = () => {
+    textInputRef.value.value = '';
+    emits('update:modelValue', '');
+};
 </script>
 
 <template>
@@ -47,8 +54,9 @@ const inputHanlder = (event: Event) => {
             <input
                 type='text'
                 :class='[$style[`text-input`], { [$style.success]: success, [$style.error]: error }]'
-                :value='modelValue ?? ``'
+                :value=modelValue
                 :placeholder=placeholder
+                ref=textInputRef
                 @input=inputHanlder
                 v-mask='mask ? mask : getDefaultMaskValue()'
             />
@@ -60,10 +68,10 @@ const inputHanlder = (event: Event) => {
             <div :class='$style[`right-image`]'>
                 <Transition name='fade-filter-scale' mode='out-in'>
                     <div v-if=loading>
-                        <Loader :class='[$style.spinner]' />
+                        <Loader :class='$style.spinner' />
                     </div>
                     <CheckMarkIcon v-else-if=success />
-                    <CrossIcon v-else-if=error />
+                    <CrossIcon @click=resetInputHanlder v-else-if=error />
                 </Transition>
             </div>
             <Transition name='fade-filter-scale' mode='out-in'>
@@ -102,70 +110,4 @@ const inputHanlder = (event: Event) => {
 }
 </style>
 
-<style lang='scss' module>
-.input-label {
-    margin-bottom: 5px;
-
-    font-weight: 200;
-    font-size: 14px;
-    line-height: 17px;
-
-    color: #33363D;
-}
-.text-input-container {
-    --text-input-padding: 8px;
-
-    position: relative;
-
-    .text-input {
-        width: 100%;
-
-        background-color: #EBEBEB;
-        border-radius: 5px;
-        padding: var(--text-input-padding);
-        outline: 1px solid transparent;
-        transition: all .2s ease-in-out;
-
-        font-family: 'Montserrat-Regular';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        color: #33363D;
-
-        &::placeholder {
-            color: var(--color-input-placeholder);
-        }
-
-        &.success {
-            outline: 1px solid #34B806;
-        }
-        &.error {
-            outline: 1px solid #E81A1A;
-        }
-    }
-    .error-text {
-        position: absolute;
-        top: 100%;
-
-        font-size: 12px;
-        color: red;
-    }
-    .right-image {
-        position: absolute;
-        top: 50%;
-        right: var(--text-input-padding);
-        translate: 0 -50%;
-    }
-    .spinner {
-        width: 16px;
-        height: 16px;
-
-        opacity: .5;
-    }
-}
-
-.input-label,
-.text-input {
-    display: block;
-}
-</style>
+<style lang='scss' module src='./styles.module.scss' />

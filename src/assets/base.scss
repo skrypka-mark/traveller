@@ -14,6 +14,9 @@
   --black: rgba(0, 0, 0, .8);
   --gray-light: #686868;
   --gray-dark: #8F8F8F;
+
+  --red: #E96E6E;
+  --green: #7DBB68;
 }
 
 /* semantic color variables for this project */
@@ -25,6 +28,9 @@
   --color-text-dark: var(--black);
   --color-button-text: var(--white-mute);
   --color-input-placeholder: var(--gray-dark);
+
+  --color-warning: var(--red);
+  --color-success: var(--green);
 
   --section-gap: 160px;
 

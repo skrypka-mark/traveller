@@ -23,5 +23,6 @@
     &.disabeled {
         background: #C0C0C0;
         color: #8F8F8F;
+        pointer-events: none;
     }
 }

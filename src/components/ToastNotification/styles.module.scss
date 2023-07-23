@@ -1,0 +1,59 @@
+.toast-notification {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    // --toast-width var is passed from parent ToastContainer
+    width: var(--toast-width);
+    height: 3.75rem;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    transition: border-radius .5s ease-in-out;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.48) 99.99%,
+        rgba(255, 255, 255, 0.36) 100%
+    );
+    @supports(backdrop-filter: blur(15px)) {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(255, 255, 255, 0.48) 99.99%,
+            rgba(255, 255, 255, 0.36) 100%
+        );
+        backdrop-filter: blur(15px);
+    }
+
+    &.first {
+        border-top-right-radius: 10px;
+    }
+    &.last {
+        border-bottom-right-radius: 10px;
+    }
+
+    & > .wrapper {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        & > .left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            & > .reopen-btn {
+                gap: 5px;
+                margin-right: -17px; // icon width + gap size
+
+                background: none;
+                cursor: pointer;
+
+                & > p {
+                    color: #4A4A4A;
+                }
+            }
+        }
+    }
+}

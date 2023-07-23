@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
-import Section from '@/components/Section';
 import CountryImage from '@/components/CountryImage';
 import Typography from '@/components/Typography';
 import Button from '@/components/Button';

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { type Ref } from 'vue';
+import type { Ref } from 'vue';
 import Typography from '@/components/Typography';
 import CountWithLabel from '@/features/country-details/modals/PaymentModal/components/CountWithLabel';
 import FiveStars from '@/features/country-details/modals/PaymentModal/components/FiveStars';
@@ -7,12 +7,10 @@ import { formatCurrencyNumber, withMinimumValue } from '@/utils';
 
 export interface IOptionItem {
     label?: string;
-    value: number;
+    value?: number;
     counter: Ref<number>;
-    stars: boolean;
-    starsAmount: Ref<number>;
-    decrement: () => void;
-    increment: () => void;
+    stars?: boolean;
+    starsAmount?: Ref<number>;
 }
 
 interface IPriceListPopupItemProps {
@@ -28,7 +26,8 @@ const decrement = (option: IOptionItem) => {
 };
 
 const setStarsAmount = (option: IOptionItem) => (amount: number) => {
-    option.starsAmount.value = +amount;
+    if(isNaN(option?.starsAmount!.value)) return;
+    option.starsAmount!.value = +amount;
 };
 </script>
 
@@ -42,7 +41,12 @@ const setStarsAmount = (option: IOptionItem) => (amount: number) => {
                 <Typography variant='body' dark v-if=!!option.label>
                     {{ option.label }}
                 </Typography>
-                <FiveStars :amount=option.starsAmount @click='(index: number) => setStarsAmount(option)(index)' v-if=option.stars />
+                <FiveStars
+                    :amount=option.starsAmount
+                    :counter=option.counter
+                    @click='(index: number) => setStarsAmount(option)(index)'
+                    v-if=option.stars
+                />
                 <div :class='$style[`count-block`]'>
                     <Typography variant='body' dark v-if=!!option.value>
                         <Transition name='filter-number' mode='out-in'>

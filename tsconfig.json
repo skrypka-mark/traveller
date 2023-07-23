@@ -1,14 +1,19 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "module": "es2022",
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*", "./src/components/*/index.vue"],
-      "@/utils/*": ["./src/utils/*"]
-    }
+      "@/components/icons/*": ["./src/components/icons/*.vue"],
+      "@/features/*/composables": ["./src/features/*/composables/"],
+      "@/features/*": ["./src/features/*/index.vue"],
+      "@/utils": ["./src/utils/index.ts"],
+      "@/plugins/*": ["./src/plugins/*/index.ts"]
+    },
+    "ignoreDeprecations": "5.0"
   },
 
   "references": [

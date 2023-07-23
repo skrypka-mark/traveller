@@ -1,7 +1,14 @@
 <script setup lang='ts'>
-import Section from '@/components/Section.vue';
+import { useRouter } from 'vue-router';
+import Section from '@/components/Section';
 import Typography from '@/components/Typography';
 import Button from '@/components/Button';
+
+const router = useRouter();
+
+const reservationClickHandler = () => {
+    router.push({ path: '/', hash: '#about' });
+};
 </script>
 
 <template>
@@ -16,7 +23,7 @@ import Button from '@/components/Button';
             <Typography variant='body'>
                 Welcome to our website dedicated to the topic of travel! Here you will find a multitude of exciting ideas for your next adventure, whether it's an exotic trip abroad or a spontaneous weekend getaway.
             </Typography>
-            <Button>
+            <Button @click=reservationClickHandler>
                 Make a Reservation
             </Button>
         </div>

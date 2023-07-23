@@ -2,7 +2,18 @@
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*", "./src/components/*/index.vue"],
+      "@/components/icons/*": ["./src/components/icons/*.vue"],
+      "@/features/*/composables": ["./src/features/*/composables/"],
+      "@/features/*": ["./src/features/*/index.vue"],
+      "@/utils": ["./src/utils/index.ts"],
+      "@/plugins/*": ["./src/plugins/*/index.ts"],
+      "@/*": ["./src/*"]
+    },
     "composite": true,
-    "types": ["node"]
+    "types": ["node"],
+    "ignoreDeprecations": "5.0"
   }
 }

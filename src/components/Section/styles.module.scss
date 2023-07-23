@@ -1,0 +1,13 @@
+.section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    @include main-container;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition: .2s;
+}

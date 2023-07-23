@@ -1,17 +1,13 @@
 <script setup lang='ts'>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import Section from '@/components/Section';
 import Blur from '@/components/Blur';
 import Typography from '@/components/Typography';
-import CountryImage from '@/components/CountryImage';
 import GallerySlider from '@/components/GallerySlider';
 
 import CountryDetails from '@/features/country-details';
-
-import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
-import ArrowRightIcon from '@/components/icons/ArrowRightIcon';
 
 import { countryTours } from '@/constants';
 
@@ -19,8 +15,7 @@ import { countryTours } from '@/constants';
 const route = useRoute();
 const router = useRouter();
 
-const transition = ref(false);
-const selectedCountryId = computed(() => route.query.countryId);
+const selectedCountryId = computed(() => route.query.countryId?.toString() ?? '');
 
 const openCountryDetails = async (id: string) => {
     if(await router.push({ hash: '#gallery' }))

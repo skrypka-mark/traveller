@@ -51,7 +51,7 @@ import TelegramIcon from '@/components/icons/TelegramIcon';
                         </section>
                     </article>
                 </section>
-                <div :class='$style[`socials`]'>
+                <div :class='$style.socials'>
                     <a href='https://www.facebook.com/' target='_blank'>
                         <FacebookIcon />
                     </a>

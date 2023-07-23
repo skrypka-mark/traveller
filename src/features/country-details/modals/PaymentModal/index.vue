@@ -1,10 +1,8 @@
 <script setup lang='ts'>
 import { ref, computed } from 'vue';
-import { usePaymentForm } from '@/features/country-details/composables/usePaymentForm';
+import { usePaymentForm } from '@/composables/usePaymentForm';
 
 import Modal from '@/components/Modal';
-import Popup from '@/components/Popup';
-import Typography from '@/components/Typography';
 
 import Section from '@/features/country-details/modals/PaymentModal/components/Section';
 import TextInput from '@/features/country-details/modals/PaymentModal/components/TextInput';
@@ -14,9 +12,11 @@ import PriceListPopup from '@/features/country-details/modals/PaymentModal/compo
 
 import OptionsIcon from '@/components/icons/OptionsIcon';
 
+import { toast } from '@/plugins/toast';
 import { formatCurrencyNumber } from '@/utils';
 
 defineProps<{ open: boolean; }>();
+const emits = defineEmits<{ (event: 'close'): void; }>();
 
 const {
     activeCard, formData, errors, isFetching,
@@ -37,14 +37,19 @@ const optionsPopupPosition = computed(() => {
     return { top: optionsBtnRect.top + optionsBtnRect.height + 10, left: optionsBtnRect.left + optionsBtnRect.width };
 });
 
-const formSubmitHandler = () => {};
+const formSubmitHandler = () => {
+    if(!isFormValid.value) return toast.error('Payment declined');
+
+    toast.success('Payment successful');
+    emits('close');
+};
 const toggleOptionsPopup = (value?: boolean) => {
     isOptionsPopupOpen.value = typeof value === 'boolean' ? value : !isOptionsPopupOpen.value;
 };
 </script>
 
 <template>
-    <Modal :open=open>
+    <Modal :open=open @close='emits(`close`)'>
         <form :class='$style[`payment-modal-form`]' @submit.prevent=formSubmitHandler>
             <Section title='Payment Details' :separator=true>
                 <div :class='$style[`inputs-container`]'>
@@ -55,7 +60,7 @@ const toggleOptionsPopup = (value?: boolean) => {
                         placeholder='1234 5678 9012 3456'
                         :modelValue=formData.cardNumber
                         mask='{{9999}} {{9999}} {{9999}} {{9999}}'
-                        :right-image='activeCard && activeCard.image'
+                        :right-image='activeCard?.image'
                         @input=inputCreditCardHandler($event)
                     />
 
@@ -76,7 +81,9 @@ const toggleOptionsPopup = (value?: boolean) => {
                         <TextInput label='CVV*' placeholder='•••' v-model=formData.cvv mask='{{999}}' />
                     </div>
                 </div>
-                <Button :class='$style[`payment-btn`]' :disabled=!isFormValid>Payment</Button>
+                <Button :class='$style[`payment-btn`]' :disabled=!isFormValid>
+                    Payment
+                </Button>
             </Section>
             <div :class='$style[`order-section`]'>
                 <Section title='Order' style='width: 100%;'>
@@ -85,7 +92,7 @@ const toggleOptionsPopup = (value?: boolean) => {
                             :class='$style[`options-btn`]'
                             :style='{ pointerEvents: isOptionsPopupOpen ? "none" : "auto" }'
                             ref=optionsBtnRef
-                            @click=toggleOptionsPopup()
+                            @click.prevent=toggleOptionsPopup()
                         >
                             <OptionsIcon />
                         </button>

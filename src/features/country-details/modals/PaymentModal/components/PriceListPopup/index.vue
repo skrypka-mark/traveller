@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import { ref, computed } from 'vue';
+import { computed, toRaw } from 'vue';
+import { usePriceList } from '@/composables/usePriceList';
 import Popup from '@/components/Popup';
 import Typography from '@/components/Typography';
 import PriceListPopupItem, { type IOptionItem } from '@/features/country-details/modals/PaymentModal/components/PriceListPopupItem';
@@ -12,108 +13,14 @@ interface IPriceListPopupProps {
 }
 
 defineProps<IPriceListPopupProps>();
-defineEmits<{ (event: 'close'): void }>();
+defineEmits<{ (event: 'close'): void; }>();
 
-const priceList = {
-    airplaneClasses: {
-        title: 'Airplane class',
-        options: [
-            {
-                label: 'Economy class',
-                value: 25,
-                counter: ref(2)
-            },
-            {
-                label: 'First class',
-                value: 50,
-                counter: ref(2)
-            },
-            {
-                label: 'Business class',
-                value: 175,
-                counter: ref(2)
-            }
-        ]
-    },
-    hotels: {
-        title: 'Hotels',
-        options: [{
-            counter: ref(2),
-            stars: true,
-            starsAmount: ref(3)
-        }]
-    },
-    entertainments: {
-        title: 'Entertainment',
-        options: [
-            {
-                label: 'Excursion',
-                value: 10,
-                counter: ref(2)
-            },
-            {
-                label: 'Diving',
-                value: 42.5,
-                counter: ref(2)
-            },
-            {
-                label: 'Zoo',
-                value: 7.5,
-                counter: ref(2)
-            },
-            {
-                label: 'Akianarium',
-                value: 15,
-                counter: ref(2)
-            },
-            {
-                label: 'Museum',
-                value: 2.5,
-                counter: ref(2)
-            },
-            {
-                label: 'Yacht',
-                value: 125,
-                counter: ref(2)
-            },
-            {
-                label: 'Snowboard',
-                value: 31,
-                counter: ref(2)
-            }
-        ]
-    },
-    additionalOptions: {
-        title: 'Additional options',
-        options: [
-            {
-                label: 'Translator',
-                value: 65,
-                counter: ref(2)
-            },
-            {
-                label: 'Taxi',
-                value: 12.5,
-                counter: ref(2)
-            },
-            {
-                label: 'Servant',
-                value: 100,
-                counter: ref(2)
-            },
-            {
-                label: 'Guide',
-                value: 35,
-                counter: ref(2)
-            }
-        ]
-    }
-};
+const priceList = usePriceList();
 
 const totalAmount = computed(() => {
     let totalValue = 0;
     for(const optionName in priceList) {
-        const options = priceList[optionName].options as IOptionItem[];
+        const options: IOptionItem[] = priceList[optionName as keyof typeof priceList].options;
         totalValue += options.reduce((prev: number, cur: IOptionItem) => cur?.value ? prev + (cur.value * cur.counter.value) : prev, 0);
     }
 

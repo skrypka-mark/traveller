@@ -1,10 +1,10 @@
 <script setup lang='ts'>
 const props = defineProps<{ id: string }>();
-const bgPath = `url(src/assets/images/bg/${props.id}.jpg)`;
+const backgroundImage = `url(src/assets/images/bg/${props.id}.jpg)`;
 </script>
 
 <template>
-    <section :class='$style.section' :id=id>
+    <section :class='$style.section' :style='{ backgroundImage }' :id=id>
         <slot />
         <!-- <div class='line line-h' />
         <div class='line line-v' /> -->
@@ -34,19 +34,4 @@ const bgPath = `url(src/assets/images/bg/${props.id}.jpg)`;
 }
 </style> -->
 
-<style lang='scss' module>
-.section {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-
-    @include main-container;
-
-    background-image: v-bind(bgPath);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    transition: .2s;
-}
-</style>
+<style lang='scss' module src='./styles.module.scss' />
