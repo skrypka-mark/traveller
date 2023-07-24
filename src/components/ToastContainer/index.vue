@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { computed } from 'vue';
-import { toast } from '@/plugins/toast';
+import { toast, type INotification } from '@/plugins/toast';
 import { useModalStore } from '@/stores/modal';
 import ToastNotification from '@/components/ToastNotification';
 
@@ -8,6 +8,11 @@ const modalStore = useModalStore();
 
 const isFirstNotifiaction = computed(() => toast.notifications.size === 1);
 const topSpacing = computed(() => modalStore.isModalOpen ? 0 : `var(--header-height)`);
+
+const notificationClickHandler = (notification: INotification) => {
+    if(notification.click) notification.click();
+    setTimeout(() => toast._remove(notification), 500);
+};
 </script>
 
 <template>
@@ -19,11 +24,12 @@ const topSpacing = computed(() => modalStore.isModalOpen ? 0 : `var(--header-hei
         >
             <TransitionGroup tag='ul' name='toast-in' :class='$style[`toast-list`]'>
                 <ToastNotification
-                    :key=notification
+                    :key=notification.id
                     v-for='(notification, index) in Array.from(toast.notifications).reverse()'
                     :is-first='index === 0'
                     :is-last='index === Array.from(toast.notifications).length - 1'
                     v-bind=notification
+                    @click=notificationClickHandler(notification)
                     @remove=toast._remove(notification)
                 />
             </TransitionGroup>

@@ -16,7 +16,10 @@ import { toast } from '@/plugins/toast';
 import { formatCurrencyNumber } from '@/utils';
 
 defineProps<{ open: boolean; }>();
-const emits = defineEmits<{ (event: 'close'): void; }>();
+const emits = defineEmits<{
+    (event: 'open'): void;
+    (event: 'close'): void;
+}>();
 
 const {
     activeCard, formData, errors, isFetching,
@@ -40,7 +43,7 @@ const optionsPopupPosition = computed(() => {
 const formSubmitHandler = () => {
     if(!isFormValid.value) return toast.error('Payment declined');
 
-    toast.success('Payment successful');
+    toast.success('Payment successful', { click: () => emits('open') });
     emits('close');
 };
 const toggleOptionsPopup = (value?: boolean) => {

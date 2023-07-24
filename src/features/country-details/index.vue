@@ -76,7 +76,7 @@ const galleryImageClickHandler = (index: number) => {
             </Button>
         </section>
 
-        <PaymentModal :open=isPaymentModalOpen @close=closePaymentModalHandler />
+        <PaymentModal :open=isPaymentModalOpen @open=openPaymentModalHandler @close=closePaymentModalHandler />
         <!-- <PaymentModal :open=true @close=closePaymentModalHandler /> -->
     </div>
 </template>

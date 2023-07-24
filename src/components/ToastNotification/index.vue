@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import type { INotificationType } from '@/plugins/toast';
 import Typography from '@/components/Typography';
 
 import ToastCircleCheckmarkIcon from '@/components/icons/ToastCircleCheckmarkIcon';
@@ -8,13 +9,16 @@ import ToastArrowIcon from '@/components/icons/ToastArrowIcon';
 
 interface IToastNotificationProps {
     message: string;
-    type: string;
+    type: INotificationType;
     isFirst: boolean;
     isLast: boolean;
 }
 
 defineProps<IToastNotificationProps>();
-const emits = defineEmits<{ (event: 'remove'): void }>();
+const emits = defineEmits<{
+    (event: 'remove'): void;
+    (event: 'click'): void;
+}>();
 
 const timeoutId = ref<ReturnType<typeof setTimeout>>();
 
@@ -40,12 +44,12 @@ const Icon = {
                         {{ message }}
                     </Typography>
                 </div>
-                <!-- <button :class='$style[`reopen-btn`]' class='flex row align-center' @click='emits(`remove`)'>
+                <button :class='$style[`reopen-btn`]' class='flex row align-center' @click.stop='emits(`click`)'>
                     <Typography variant='body' dark>
                         Reopen
                     </Typography>
                     <ToastArrowIcon />
-                </button> -->
+                </button>
             </div>
             <component :is=Icon[type] style='margin-left: auto;' />
         </div>

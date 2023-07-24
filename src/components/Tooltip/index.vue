@@ -42,7 +42,7 @@ watch(isHovered, async () => {
                         maxWidth: `${TOOLTIP_WIDTH}px`,
                         height: `${TOOLTIP_HEIGHT}px`,
                         padding: `${TOOLTIP_PADDING}px`,
-                        zIndex: isTooltipVisible ? 9999 : 9998
+                        zIndex: isTooltipVisible ? 9999 : 9998 // needed to immediately hide previously hovered tooltip
                     }'
                     v-if=isTooltipVisible
                 >

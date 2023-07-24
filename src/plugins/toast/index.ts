@@ -1,26 +1,25 @@
 import { reactive } from '@vue/reactivity';
+import { nanoid } from 'nanoid';
 import _ from 'lodash';
 
-interface INotification {
+export type INotificationType = 'success' | 'error' | 'warning' | 'info';
+
+export interface INotification {
+    id: string;
     message: string;
-    type: 'success' | 'error' | 'warning' | 'info';
+    type: INotificationType;
+    click?: (...options: any) => void;
 }
 
 export const toast = reactive({
     notifications: new Set([] as INotification[]),
-    _add: (newNotification: INotification) => {
-        // Check if such a notification already exists in the state
-        // const index = _.findIndex(Array.from(toast.notifications), notification => _.isMatch(notification, newNotification));
-        // if(index !== -1) return;
-        
-        toast.notifications.add(newNotification);
-    },
+    _add: (newNotification: INotification) => toast.notifications.add({ ...newNotification, id: nanoid() }),
     _remove: (notification: INotification) => toast.notifications.delete(notification),
     _clear: () => toast.notifications.clear(),
 
-    show: (message: string, options?: any) => toast._add({ message, ...options }),
-    success: (message: string, options?: any) => toast._add({ message, ...options, type: 'success' }),
-    error: (message: string, options?: any) => toast._add({ message, ...options, type: 'error' }),
-    warning: (message: string, options?: any) => toast._add({ message, ...options, type: 'warning' }),
-    info: (message: string, options?: any) => toast._add({ message, ...options, type: 'info' })
+    show: (message: string, options?: any) => toast._add({ ...options, message }),
+    success: (message: string, options?: any) => toast._add({ ...options, message, type: 'success' }),
+    error: (message: string, options?: any) => toast._add({ ...options, message, type: 'error' }),
+    warning: (message: string, options?: any) => toast._add({ ...options, message, type: 'warning' }),
+    info: (message: string, options?: any) => toast._add({ ...options, message, type: 'info' })
 });
