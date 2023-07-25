@@ -58,7 +58,7 @@ export const usePaymentForm = () => {
     const total = computed(() => numberOfPersonsSum.value + numberOfDaysSum.value);
     const isFormValid = computed<boolean>(() => {
         return !!formData.email && !!formData.nameOnCard && !!formData.cardNumber && !!formData.expirationDate.month && !!formData.expirationDate.year &&
-            !!formData.cvv && !!isDiscountCodeValid.value;
+            !!formData.cvv && (formData.discountCode === '' ? true : !!isDiscountCodeValid.value);
     });
 
     const incrementNumberOfPersons = () => {
@@ -107,9 +107,9 @@ export const usePaymentForm = () => {
         clearTimeout(timeout);
 
         isFetching.value = true;
-        isDiscountCodeValid.value = await new Promise((resolve, reject) => {
+        isDiscountCodeValid.value = await new Promise(resolve => {
             timeout = setTimeout(() => {
-                if(formData.discountCode === VALID_DISCOUNT_CODE) resolve(true);
+                if(formData.discountCode === VALID_DISCOUNT_CODE || formData.discountCode === '') resolve(true);
                 else resolve(false);
             }, 1000);
         });
