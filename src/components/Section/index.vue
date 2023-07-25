@@ -1,10 +1,14 @@
 <script setup lang='ts'>
+import { getFullImagePath } from '@/utils';
+
 const props = defineProps<{ id: string }>();
-const backgroundImagePath = `@/assets/images/bg/${props.id}.jpg`;
+
+const backgroundImagePath = getFullImagePath(`images/bg/${props.id}.jpg`)
+const backgroundImage = `url('${backgroundImagePath}')`;
 </script>
 
 <template>
-    <section :class='$style.section' :style='{ "--bg-image-path": backgroundImagePath }' :id=id>
+    <section :class='$style.section' :style='{ backgroundImage }' :id=id>
         <slot />
     </section>
 </template>
