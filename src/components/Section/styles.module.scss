@@ -5,7 +5,7 @@
 
     @include main-container;
 
-    background-image: url('@/assets/images/bg/home.jpg');
+    background-image: url(var(--bg-image-path));
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
