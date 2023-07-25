@@ -19,18 +19,18 @@ const TOOLTIP_WIDTH = 100;
 const TOOLTIP_HEIGHT = 30;
 const TOOLTIP_PADDING = 10;
 
-watch(isHovered, async () => {
+watch(isHovered, async hovered => {
+    if(!hovered) {
+        tooltipSpecs.top = 0;
+        tooltipSpecs.left = 0;
+    }
+
     await nextTick();
     if(!tooltipContainerRef.value) return;
 
     const { top, left } = tooltipContainerRef.value.getBoundingClientRect();
     tooltipSpecs.top = top - TOOLTIP_HEIGHT - 10;
     tooltipSpecs.left = left - (TOOLTIP_WIDTH / 2) + TOOLTIP_PADDING + 12 - props.leftOffset;
-
-    if(!isHovered) {
-        tooltipSpecs.top = 0;
-        tooltipSpecs.left = 0;
-    }
 });
 </script>
 
