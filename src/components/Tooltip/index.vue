@@ -26,6 +26,11 @@ watch(isHovered, async () => {
     const { top, left } = tooltipContainerRef.value.getBoundingClientRect();
     tooltipSpecs.top = top - TOOLTIP_HEIGHT - 10;
     tooltipSpecs.left = left - (TOOLTIP_WIDTH / 2) + TOOLTIP_PADDING + 12 - props.leftOffset;
+
+    if(!isHovered) {
+        tooltipSpecs.top = 0;
+        tooltipSpecs.left = 0;
+    }
 });
 </script>
 
