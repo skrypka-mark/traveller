@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { SharedElementRouteGuard } from 'v-shared-element';
-import MainPage from '@/pages';
+import MainPage from '@/pages/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

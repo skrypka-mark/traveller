@@ -11,7 +11,8 @@
       "@/features/*/composables": ["./src/features/*/composables/"],
       "@/features/*": ["./src/features/*/index.vue"],
       "@/utils": ["./src/utils/index.ts"],
-      "@/plugins/*": ["./src/plugins/*/index.ts"]
+      "@/plugins/*": ["./src/plugins/*/index.ts"],
+      "@/pages": ["./src/pages/index.vue"]
     },
     "ignoreDeprecations": "5.0"
   },

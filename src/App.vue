@@ -13,11 +13,7 @@ import ToastContainer from '@/components/ToastContainer';
 
 <template>
   <Header />
-  <Home />
-  <Info />
-  <Gallery />
-  <Contact />
-  <About />
+  <RouterView />
 
   <ToastContainer />
 </template>
