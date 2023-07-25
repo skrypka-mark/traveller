@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { watch, ref, reactive, computed, nextTick, type Ref } from 'vue';
-import { useElementHover } from '@vueuse/core';
+import { useElementBounding, useElementHover } from '@vueuse/core';
 import Typography from '@/components/Typography';
 
 interface ITooltipProps {
@@ -12,6 +12,7 @@ const props = defineProps<ITooltipProps>();
 
 const tooltipContainerRef = ref<Ref | null>(null);
 const tooltipSpecs = reactive({ top: 0, left: 0 });
+const tooltipContainerRect = useElementBounding(tooltipContainerRef);
 const isHovered = useElementHover(tooltipContainerRef);
 const isTooltipVisible = computed(() => isHovered.value && tooltipSpecs.top && tooltipSpecs.left);
 
@@ -19,19 +20,21 @@ const TOOLTIP_WIDTH = 100;
 const TOOLTIP_HEIGHT = 30;
 const TOOLTIP_PADDING = 10;
 
-watch(isHovered, async hovered => {
-    if(!hovered) {
-        tooltipSpecs.top = 0;
-        tooltipSpecs.left = 0;
-    }
-
-    await nextTick();
+const observe = async () => {
     if(!tooltipContainerRef.value) return;
 
-    const { top, left } = tooltipContainerRef.value.getBoundingClientRect();
-    tooltipSpecs.top = top - TOOLTIP_HEIGHT - 10;
-    tooltipSpecs.left = left - (TOOLTIP_WIDTH / 2) + TOOLTIP_PADDING + 12 - props.leftOffset;
+    const { top, left } = tooltipContainerRect;
+    tooltipSpecs.top = top.value - TOOLTIP_HEIGHT - 10;
+    tooltipSpecs.left = left.value - (TOOLTIP_WIDTH / 2) + TOOLTIP_PADDING + 12 - props.leftOffset;
+};
+watch(isHovered, async () => {
+    tooltipSpecs.top = 0;
+    tooltipSpecs.left = 0;
+
+    await nextTick();
+    await observe();
 });
+watch(() => tooltipContainerRect.top, observe, { deep: true });
 </script>
 
 <template>
