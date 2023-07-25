@@ -1,10 +1,10 @@
 <script setup lang='ts'>
 const props = defineProps<{ id: string }>();
-const backgroundImage = `url('@/assets/images/bg/${props.id}.jpg')`;
+// const backgroundImage = `url('@/assets/images/bg/${props.id}.jpg')`;
 </script>
 
 <template>
-    <section :class='$style.section' :style='{ backgroundImage }' :id=id>
+    <section :class='$style.section' :id=id>
         <slot />
     </section>
 </template>
